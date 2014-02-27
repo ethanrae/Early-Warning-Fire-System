@@ -1,9 +1,14 @@
+package source;
+
 /**
  *
  * @author ethan.rae045
  */
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.table.TableModel;
 
 public class Listener implements ActionListener
 {
@@ -21,7 +26,23 @@ public class Listener implements ActionListener
         {
             //Does nothing as of now
             //Need to reconfigure the methods and organization
+            String columnNames[] = { "Alert","ID", "Temp", "Humidity", "Battery Life", "Location" };
+	
+            //Create 1024 stub Sensor objects with random data variables
+            Window.createSensors();
+        
+            //Collects data from sensors and store in 2D String array
             
+            String[][] dataValues = Window.getDataValues();
+
+            // Initialize JTable with column names and sensor data
+            JTable table = Window.getTable();
+            TableModel model = table.getModel();
+            Window.setTable(table);
+            JPanel panel = Window.getRightMainPanel();
+            Window.setGridAlertColors(panel);
+            panel.repaint();
+
             /*
             Window.createSensors();
             Window.setGridAlertColors(Window.rightMainPanel);

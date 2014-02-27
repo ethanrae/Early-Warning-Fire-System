@@ -1,3 +1,5 @@
+package source;
+
 /**
  *
  * @author ethan.rae045
@@ -25,7 +27,40 @@ public class Window extends JFrame
     //no need for public static, used for testing generate button from Listener class
     public static ArrayList<Sensor> sensors;
     public static String[][] dataValues;
+
+    public static String[][] getDataValues() {
+        return dataValues;
+    }
+
+    public static void setDataValues(String[][] dataValues) {
+        Window.dataValues = dataValues;
+    }
     public static JPanel rightMainPanel;
+
+    public static ArrayList<Sensor> getSensors() {
+        return sensors;
+    }
+
+    public static void setSensors(ArrayList<Sensor> sensors) {
+        Window.sensors = sensors;
+    }
+
+    public static JPanel getRightMainPanel() {
+        return rightMainPanel;
+    }
+
+    public static void setRightMainPanel(JPanel rightMainPanel) {
+        Window.rightMainPanel = rightMainPanel;
+    }
+    public static JTable table;
+
+    public static JTable getTable() {
+        return table;
+    }
+
+    public static void setTable(JTable table) {
+        Window.table = table;
+    }
 
     public Window( )
     {
@@ -53,8 +88,7 @@ public class Window extends JFrame
         leftMainPanel.setPreferredSize(new Dimension(400,800));
         rightMainPanel.setPreferredSize(new Dimension(800,600));
         
-        //Create table for a list of sensors
-        JTable table; 
+        //Create table for a list of sensors 
         
         //Create scroll pane for the table to sit in
 	JScrollPane scrollPane; 
@@ -70,7 +104,7 @@ public class Window extends JFrame
 
 	// Initialize JTable with column names and sensor data
 	table = new JTable( dataValues, columnNames );
-                
+        
 	// Add the filled JTable to a scrolling pane
 	scrollPane = new JScrollPane(table);
         
@@ -131,7 +165,7 @@ public class Window extends JFrame
             dataValues[i][1] =  sensor.getId() + "";
             dataValues[i][2] =  sensor.getTemp() + "";
             dataValues[i][3] =  sensor.getHumidity() + "";
-            dataValues[i][4] =  sensor.getBatteryLife() + "";
+            dataValues[i][4] =  sensor.getVoltage() + "";
             dataValues[i][5] =  sensor.getLocation().x + "," + sensor.getLocation().y ;
         }
     }

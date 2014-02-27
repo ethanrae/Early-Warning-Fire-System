@@ -1,3 +1,5 @@
+package source;
+
 /**
  *
  * @author Ethan
@@ -6,25 +8,27 @@
 import java.awt.Point;
 
 public class Sensor {
+    double time;
     int id;
-    int alertLevel;
     double temp;
+    double light;
     double humidity;
-    double batteryLife;
+    double voltage;
     Point location;
+    int alertLevel;
 
     public Sensor()
     {
         
     }
     //may need to overload without alertLevel preset...
-    public Sensor(int id, int alertLevel, double temp, double humidity, double batteryLife, Point location)
+    public Sensor(int id, int alertLevel, double temp, double humidity, double voltage, Point location)
     {
         this.id = id;
         this.alertLevel = alertLevel;
         this.temp = temp;
         this.humidity = humidity;
-        this.batteryLife = batteryLife;
+        this.voltage = voltage;
         this.location = location;
     }
     
@@ -60,12 +64,12 @@ public class Sensor {
         this.humidity = humidity;
     }
 
-    public double getBatteryLife() {
-        return batteryLife;
+    public double getVoltage() {
+        return voltage;
     }
 
-    public void setBatteryLife(double batteryLife) {
-        this.batteryLife = batteryLife;
+    public void setVoltage(double voltage) {
+        this.voltage = voltage;
     }
 
     public Point getLocation() {
