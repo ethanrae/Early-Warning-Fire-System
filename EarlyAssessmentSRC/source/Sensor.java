@@ -1,3 +1,4 @@
+
 package source;
 
 /**
@@ -5,47 +6,43 @@ package source;
  * @author Ethan
  */
 
-import java.awt.Point;
-
 public class Sensor {
     double time;
     int id;
     double temp;
+    double hum;
     double light;
-    double humidity;
     double voltage;
-    Point location;
-    int alertLevel;
 
     public Sensor()
     {
         
     }
-    //may need to overload without alertLevel preset...
-    public Sensor(int id, int alertLevel, double temp, double humidity, double voltage, Point location)
+
+    public Sensor(double time, int id, double temp, double hum, double light, double voltage)
     {
+        this.time = time;
         this.id = id;
-        this.alertLevel = alertLevel;
         this.temp = temp;
-        this.humidity = humidity;
+        this.hum = hum;
+        this.light = light;
         this.voltage = voltage;
-        this.location = location;
     }
-    
+
+    public double getTime() {
+        return time;
+    }
+
+    public void setTime(double time) {
+        this.time = time;
+    }
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getAlertLevel() {
-        return alertLevel;
-    }
-
-    public void setAlertLevel(int alertLevel) {
-        this.alertLevel = alertLevel;
     }
 
     public double getTemp() {
@@ -56,12 +53,20 @@ public class Sensor {
         this.temp = temp;
     }
 
-    public double getHumidity() {
-        return humidity;
+    public double getHum() {
+        return hum;
     }
 
-    public void setHumidity(double humidity) {
-        this.humidity = humidity;
+    public void setHum(double hum) {
+        this.hum = hum;
+    }
+
+    public double getLight() {
+        return light;
+    }
+
+    public void setLight(double light) {
+        this.light = light;
     }
 
     public double getVoltage() {
@@ -70,14 +75,5 @@ public class Sensor {
 
     public void setVoltage(double voltage) {
         this.voltage = voltage;
-    }
-
-    public Point getLocation() {
-        return location;
-    }
-
-    public void setLocation(Point location) {
-        this.location = location;
-    }
-    
+    }  
 }
