@@ -7,7 +7,7 @@ package source;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import static source.View.db_helper;
+import static source.Main.db_helper;
 import static source.View.table_model;
 import static source.View.table_view;
 
@@ -27,6 +27,7 @@ public class Controller implements ActionListener
         else if (e.getActionCommand().equalsIgnoreCase("View Selection")) //could be else
         {
             int[] selected_row_indexs = table_view.getSelectedRows();
+            
             if(selected_row_indexs.length > 0)
             {
                 Sensors_Model selected = new Sensors_Model(table_model.getSelectedRows(selected_row_indexs));

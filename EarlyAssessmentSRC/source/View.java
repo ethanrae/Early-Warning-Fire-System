@@ -16,26 +16,18 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import static source.Main.db_helper;
 
 public class View extends JFrame
 {
     public static final int WIDTH = 1200; 
-    public static final int HEIGHT = 800;
-    public static DataBase_Connector db_helper;
+    public static final int HEIGHT = 1000;
+    
     public static JTable table_view;
     public static Table_Model table_model;
-    public static String[][] dataValues;
     public static JPanel rightMainPanel;
+    public static JPanel leftMainPanel;
     
-
-    public static String[][] getDataValues() {
-        return dataValues;
-    }
-
-    public static void setDataValues(String[][] dataValues) {
-        View.dataValues = dataValues;
-    }
-
     public static JPanel getRightMainPanel() {
         return rightMainPanel;
     }
@@ -68,31 +60,28 @@ public class View extends JFrame
         JButton closeButton = new JButton("Close");
         closeButton.addActionListener(listener);
         
-        //setup generate new data button
+        //setup generate view selection button
         JButton newDataButton = new JButton("View Selection");
         newDataButton.addActionListener(listener);
         
+        //setup generate view refresh button
         JButton refresh = new JButton("Refresh");
         refresh.addActionListener(listener);
 
         //create main panels
-        JPanel leftMainPanel = new JPanel(new BorderLayout());
-        rightMainPanel = new JPanel(new GridLayout(32,32));
+        leftMainPanel = new JPanel(new BorderLayout());
+        JPanel topRightIdentifyPanel = new JPanel(new BorderLayout());
+        topRightIdentifyPanel.add(new JLabel("AWARENESS LEVEL"),BorderLayout.PAGE_START);
+        rightMainPanel = new JPanel(new BorderLayout());
+        JPanel gridPanel = new JPanel(new GridLayout(32,32));
         JPanel leftMainHeaderPanel = new JPanel();
  
-        leftMainPanel.setPreferredSize(new Dimension(400,800));
-        rightMainPanel.setPreferredSize(new Dimension(800,600));
-        
-        db_helper = new DataBase_Connector();
-        db_helper.startDataBaseServer(); 
+        leftMainPanel.setPreferredSize(new Dimension(400,1000));
+        rightMainPanel.setPreferredSize(new Dimension(800,1000));
         
         //Create scroll pane for the table_view to sit in
 	JScrollPane scrollPane;
-        db_helper.updateDatabase("SENSORS", "time0.0_Sensors.txt");
 	
-        Object[][] db_sensors = db_helper.getSensors();
-        Sensors_Model sensor_model = new Sensors_Model(db_sensors);
-        table_model = new Table_Model(sensor_model);
         //Collects data from sensors and store in 2D String array
 
 	// Initialize JTable with column names and sensor data
@@ -111,10 +100,13 @@ public class View extends JFrame
         leftMainPanel.add(bottomButtonPanel,BorderLayout.SOUTH);
         leftMainPanel.add(leftMainHeaderPanel,BorderLayout.PAGE_START);
         
-        setGridAlertColors(rightMainPanel);
-        
+        setGridAlertColors(gridPanel);
+        topRightIdentifyPanel.setPreferredSize(new Dimension(800,200));
+        gridPanel.setPreferredSize(new Dimension(800,800));
         // Adds left and right main panels to the main JFrame
         add(leftMainPanel,BorderLayout.WEST);
+        rightMainPanel.add(topRightIdentifyPanel,BorderLayout.PAGE_START);
+        rightMainPanel.add(gridPanel,BorderLayout.CENTER);
         add(rightMainPanel,BorderLayout.CENTER);
 
     }

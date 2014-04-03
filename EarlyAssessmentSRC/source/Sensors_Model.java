@@ -26,9 +26,10 @@ public class Sensors_Model {
     public Sensors_Model(Object[][] sensors)
     {
         this.sensors = new Object[1024][6];
-        for(int r = 0; r < sensors.length; r++)
+        this.sensors = sensors;
+        /*for(int r = 0; r < sensors.length; r++)
             for(int c = 0; c < sensors[r].length; c++)
-                this.sensors[r][c] = sensors[r][c];
+                this.sensors[r][c] = sensors[r][c];*/
     }
     
     public int getNumberOfRows()

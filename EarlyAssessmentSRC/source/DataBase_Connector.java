@@ -9,7 +9,7 @@ import java.net.InetAddress;
 import java.sql.*;
 import org.apache.derby.drda.NetworkServerControl;
 
-public class DataBase_Connector {
+public final class DataBase_Connector {
 
     //boolean that will create a new table every time the program is restarted
     private static boolean table_created = false;
@@ -22,6 +22,7 @@ public class DataBase_Connector {
 
     public DataBase_Connector() {
         //default constructor for DataBase_Connector
+        this.startDataBaseServer(); 
     }
 
     //Deletes Table if one exists already
@@ -49,7 +50,7 @@ public class DataBase_Connector {
         //deleteTable();
         try {
             try (Statement sta = con.createStatement()) {
-                int wasTableCreated = sta.executeUpdate("CREATE TABLE SENSORS(\"TIME\" NUMERIC,\"SENSORID\" NUMERIC not null primary key,\"TEMP\" NUMERIC,\"HUM\" NUMERIC,\"LIGHT\" NUMERIC,\"VOLTAGE\" NUMERIC)");
+                int wasTableCreated = sta.executeUpdate("CREATE TABLE SENSORS(\"TIME\" DOUBLE,\"SENSORID\" INTEGER not null primary key,\"TEMP\" DOUBLE,\"HUM\" DOUBLE,\"LIGHT\" DOUBLE,\"VOLTAGE\" DOUBLE)");
                 
                 if (wasTableCreated >= 0) {
                     System.out.println("Table created.");
@@ -59,7 +60,7 @@ public class DataBase_Connector {
         } catch (SQLException ex) {
             //table wasn't created 
             //or Statement sta could not be closed, (shouldn't happen)
-            //MileageProgram.table_created will stay equal to false
+            //table_created will stay equal to false
             //ex.printStackTrace();
         }
     }
@@ -117,12 +118,12 @@ public class DataBase_Connector {
             StringBuffer sb = new StringBuffer("");
             while (rs.next()) {
                 
-                sb.append("TIME=").append(rs.getDouble(1)).append("\n");//ID
-                sb.append("SENSORID=").append(rs.getDouble(2)).append("\n");//NAME
-                sb.append("TEMP=").append(rs.getDouble(3)).append("\n");//EMAIL
-                sb.append("HUM=").append(rs.getDouble(4)).append("\n");//STATUS
-                sb.append("LIGHT=").append(rs.getDouble(5)).append("\n");//TIME
-                sb.append("VOLTAGE=").append(rs.getDouble(6)).append("\n\n");//MILEAGE
+                sb.append("TIME=").append(rs.getDouble(1)).append("\t");
+                sb.append("SENSORID=").append(rs.getInt(2)).append("\t");
+                sb.append("TEMP=").append(rs.getDouble(3)).append("\t");
+                sb.append("HUM=").append(rs.getDouble(4)).append("\t");
+                sb.append("LIGHT=").append(rs.getDouble(5)).append("\t");
+                sb.append("VOLTAGE=").append(rs.getDouble(6)).append("\n");
                 
             }
             System.out.println("\n" + sb);
@@ -152,12 +153,11 @@ public class DataBase_Connector {
 
     public void updateDatabase(String table_name, String file_name) {
         createConnection();
-        deleteTable();
         createTable();
         
         try {
             PreparedStatement ps = con.prepareStatement("CALL SYSCS_UTIL.SYSCS_IMPORT_TABLE " +
-                "(null, '"+ table_name + "', '"+ file_name +"', null, null, null,0)");
+                "(null, '"+ table_name + "', '"+ file_name +"', null, null, null,1)");
 
             int result = ps.executeUpdate();
 
@@ -254,7 +254,7 @@ public class DataBase_Connector {
                 sensors[i][2] = rs.getDouble(3);
                 sensors[i][3] = rs.getDouble(4);
                 sensors[i][4] = rs.getDouble(5);
-                sensors[i][5] = rs.getDouble(6);    
+                sensors[i][5] = rs.getDouble(6);
             }
         } catch (SQLException e) {
             //e.printStackTrace();
