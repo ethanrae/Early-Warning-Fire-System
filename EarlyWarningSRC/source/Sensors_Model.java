@@ -27,6 +27,8 @@ public class Sensors_Model {
     {
         this.sensors = new Object[1024][6];
         this.sensors = sensors;
+        
+        //deep copy not needed
         /*for(int r = 0; r < sensors.length; r++)
             for(int c = 0; c < sensors[r].length; c++)
                 this.sensors[r][c] = sensors[r][c];*/
