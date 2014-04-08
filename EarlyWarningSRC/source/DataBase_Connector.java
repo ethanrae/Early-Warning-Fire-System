@@ -4,7 +4,7 @@ package source;
  *
  * @author Ethan Rae
  */
-
+import java.awt.Color;
 import java.net.InetAddress;
 import java.sql.*;
 import org.apache.derby.drda.NetworkServerControl;
@@ -21,8 +21,7 @@ public final class DataBase_Connector {
     private Connection con;
 
     public DataBase_Connector() {
-        //default constructor for DataBase_Connector
-        this.startDataBaseServer(); 
+
     }
 
     //Deletes Table if one exists already
@@ -51,7 +50,7 @@ public final class DataBase_Connector {
         try {
             try (Statement sta = con.createStatement()) {
                 int wasTableCreated = sta.executeUpdate("CREATE TABLE SENSORS(\"TIME\" DOUBLE,\"SENSORID\" INTEGER not null primary key,\"TEMP\" DOUBLE,\"HUM\" DOUBLE,\"LIGHT\" DOUBLE,\"VOLTAGE\" DOUBLE)");
-                
+
                 if (wasTableCreated >= 0) {
                     System.out.println("Table created.");
                 }
@@ -72,9 +71,7 @@ public final class DataBase_Connector {
             // the configuration file name
             //String fileName = "app.config";
             //InputStream is;
-
             //is = new FileInputStream(fileName);
-
             // load the properties file
             //prop.load(is);
             // get the value for app.name key
@@ -102,7 +99,7 @@ public final class DataBase_Connector {
 
     private void closeConnection() {
         try {
-            //con.close();
+            con.close();
         } catch (Exception e) {
             //e.printStackTrace();
         }
@@ -117,47 +114,48 @@ public final class DataBase_Connector {
 
             StringBuffer sb = new StringBuffer("");
             while (rs.next()) {
-                
+
                 sb.append("TIME=").append(rs.getDouble(1)).append("\t");
                 sb.append("SENSORID=").append(rs.getInt(2)).append("\t");
                 sb.append("TEMP=").append(rs.getDouble(3)).append("\t");
                 sb.append("HUM=").append(rs.getDouble(4)).append("\t");
                 sb.append("LIGHT=").append(rs.getDouble(5)).append("\t");
                 sb.append("VOLTAGE=").append(rs.getDouble(6)).append("\n");
-                
+
             }
             System.out.println("\n" + sb);
         } catch (SQLException e) {
             //e.printStackTrace();
+        } finally {
+            closeConnection();
         }
     }
-    
+
     //Might use this code later for cell queries
     /*
-    public long getMileage(int key) {
-        createConnection();
-        long mileage = 0;
-        try {
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT \"MILEAGE\" FROM STUDENT.CUSTOMERS_TABLE where ID=" + key);
+     public long getMileage(int key) {
+     createConnection();
+     long mileage = 0;
+     try {
+     Statement st = con.createStatement();
+     ResultSet rs = st.executeQuery("SELECT \"MILEAGE\" FROM STUDENT.CUSTOMERS_TABLE where ID=" + key);
 
-            while (rs.next()) {
-                mileage = rs.getLong("MILEAGE");
-            }
+     while (rs.next()) {
+     mileage = rs.getLong("MILEAGE");
+     }
 
-        } catch (SQLException e) {
-            //e.printStackTrace();
-        }
-        return mileage;
-    }*/
-
+     } catch (SQLException e) {
+     //e.printStackTrace();
+     }
+     return mileage;
+     }*/
     public void updateDatabase(String table_name, String file_name) {
         createConnection();
         createTable();
-        
+
         try {
-            PreparedStatement ps = con.prepareStatement("CALL SYSCS_UTIL.SYSCS_IMPORT_TABLE " +
-                "(null, '"+ table_name + "', '"+ file_name +"', null, null, null,1)");
+            PreparedStatement ps = con.prepareStatement("CALL SYSCS_UTIL.SYSCS_IMPORT_TABLE "
+                    + "(null, '" + table_name + "', '" + file_name + "', null, null, null,1)");
 
             int result = ps.executeUpdate();
 
@@ -169,8 +167,10 @@ public final class DataBase_Connector {
         } catch (SQLException e) {
             System.err.println("updateDatabase() Exception caught");
             e.printStackTrace();
+        } finally {
+            closeConnection();
         }
-        
+
     }
 
     public void insertData(Sensor S) {
@@ -253,8 +253,8 @@ public final class DataBase_Connector {
             double hum;
             double light;
             double voltage;
-            
-            for(int i = 0; i < sensors.length && rs.next(); i++) {
+
+            for (int i = 0; i < sensors.length && rs.next(); i++) {
                 time = rs.getDouble(1);
                 id = rs.getInt(2);
                 temp = rs.getDouble(3);
@@ -269,10 +269,26 @@ public final class DataBase_Connector {
                 sensors[i][4] = light;
                 sensors[i][5] = voltage;
             }
-            Main.total_temp_avg = Main.total_temp_avg/Main.NUM_OF_SENSORS;
-            System.out.println("Total Avg Temp: " + Main.total_temp_avg);
+            Main.total_temp_avg = Main.total_temp_avg / Main.NUM_OF_SENSORS;
+            if (View.alertLabel != null) {
+                if (Main.total_temp_avg <= 20) {
+                    View.alertLabel.setBackground(Color.green);
+                } else if (Main.total_temp_avg <= 30) {
+                    View.alertLabel.setBackground(Color.yellow);
+                } else if (Main.total_temp_avg <= 40) {
+                    View.alertLabel.setBackground(Color.orange);
+                } else {
+                    View.alertLabel.setBackground(Color.red);
+                }
+                View.alertText.setText("\tAverage Temperature: " + Main.total_temp_avg);
+                
+            }
+
+            //System.out.println("Total Avg Temp: " + Main.total_temp_avg);
         } catch (SQLException e) {
             //e.printStackTrace();
+        } finally {
+            closeConnection();
         }
         return sensors;
     }

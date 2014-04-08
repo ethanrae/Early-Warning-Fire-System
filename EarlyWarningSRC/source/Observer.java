@@ -4,7 +4,6 @@ package source;
  *
  * @author Ethan Rae
  */
+public interface Observer {
 
-public interface Observer{
-    
 }

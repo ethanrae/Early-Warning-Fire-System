@@ -1,12 +1,11 @@
-
 package source;
 
 /**
  *
  * @author Ethan
  */
-
 public class Sensor {
+
     double time;
     int id;
     double temp;
@@ -14,13 +13,11 @@ public class Sensor {
     double light;
     double voltage;
 
-    public Sensor()
-    {
-        
+    public Sensor() {
+
     }
 
-    public Sensor(double time, int id, double temp, double hum, double light, double voltage)
-    {
+    public Sensor(double time, int id, double temp, double hum, double light, double voltage) {
         this.time = time;
         this.id = id;
         this.temp = temp;
@@ -75,5 +72,5 @@ public class Sensor {
 
     public void setVoltage(double voltage) {
         this.voltage = voltage;
-    }  
+    }
 }
