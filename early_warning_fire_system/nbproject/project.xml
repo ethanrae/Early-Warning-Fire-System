@@ -5,7 +5,7 @@
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
             <name>early_warning_fire_system</name>
             <source-roots>
-                <root id="src.EarlyAssessmentSRC.dir"/>
+                <root id="src.EarlyWarningSRC.dir"/>
             </source-roots>
             <test-roots>
                 <root id="test.src.dir"/>
