@@ -1,6 +1,8 @@
 
 package source;
 
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import static source.View.table_model;
 
 /**
@@ -10,11 +12,12 @@ import static source.View.table_model;
 
 public class Main {
     
-    
+    public static double total_temp_avg = 0.0;
+    public static final int NUM_OF_SENSORS = 1024;
     public static boolean start_debug = false; //true = print current database, false = run program normally
     private static boolean is_database_started = false; //TODO use is_database_started to control when to start ViewThread
     public static String table_name = "SENSORS"; //The name of the data base table used in the program
-    public static String[] sensor_filenames = {"time0.0_Sensors.txt","time0.5_Sensors.txt"}; //The time incremented data text files for 1024 sensors each
+    public static String[] sensor_filenames = {"time0.0_Sensors.txt","time0.5_Sensors.txt","time1.0_Sensors.txt","time1.5_Sensors.txt","time2.0_Sensors.txt","time2.5_Sensors.txt","time3.0_Sensors.txt","time3.5_Sensors.txt","time4.0_Sensors.txt","time4.5_Sensors.txt","time5.0_Sensors.txt"}; //The time incremented data text files for 1024 sensors each
     public static DataBase_Connector db_helper = new DataBase_Connector(); //Creating global static database helper to avoid repeated 'new' calls
     
     /*
@@ -83,11 +86,14 @@ public class Main {
                         //update table model with new data from database
                         table_model.all_sensors.setSensors(db_helper.getSensors()); 
                         
+
+                        View.updateCellColors();
+                        
                         //notify the table to update its view
                         table_model.fireTableDataChanged(); 
                         
                         //sleep 30 seconds
-                        Thread.sleep(30000);
+                        Thread.sleep(5000);//5s
                     }catch (InterruptedException ex) {}
                 }
             }

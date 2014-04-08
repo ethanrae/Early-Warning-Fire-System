@@ -18,13 +18,13 @@ public class Controller implements ActionListener
     {
         //System.out.println(e.getActionCommand());
         
-        //Should use switch statement on String Object but only two buttons for now
+        //Should use switch statement
         if(e.getActionCommand().equalsIgnoreCase("Close"))
         {
             db_helper.shutdownDataBaseServer();
             System.exit(0);
         }
-        else if (e.getActionCommand().equalsIgnoreCase("View Selection")) //could be else
+        else if (e.getActionCommand().equalsIgnoreCase("View Selection"))
         {
             int[] selected_row_indexs = table_view.getSelectedRows();
             

@@ -1,8 +1,6 @@
 
 package source;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -83,7 +81,7 @@ public class Table_Model extends AbstractTableModel {
     
     @Override
     public String getColumnName(int columnIndex) {
-    return columnNames[columnIndex];
+        return columnNames[columnIndex];
 }
     
     public Object[][] getSelectedRows(int[] selected_index)
@@ -105,4 +103,4 @@ public class Table_Model extends AbstractTableModel {
     }
     
     
-}
+}//end of class

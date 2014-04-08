@@ -243,19 +243,34 @@ public final class DataBase_Connector {
     public Object[][] getSensors() {
         createConnection();
         Object[][] sensors = new Object[1024][6];
-
+        Main.total_temp_avg = 0.0;
         try {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select * from STUDENT.SENSORS");
-
+            double time;
+            int id;
+            double temp;
+            double hum;
+            double light;
+            double voltage;
+            
             for(int i = 0; i < sensors.length && rs.next(); i++) {
-                sensors[i][0] = rs.getDouble(1);
-                sensors[i][1] = rs.getInt(2);
-                sensors[i][2] = rs.getDouble(3);
-                sensors[i][3] = rs.getDouble(4);
-                sensors[i][4] = rs.getDouble(5);
-                sensors[i][5] = rs.getDouble(6);
+                time = rs.getDouble(1);
+                id = rs.getInt(2);
+                temp = rs.getDouble(3);
+                Main.total_temp_avg += temp;
+                hum = rs.getDouble(4);
+                light = rs.getDouble(5);
+                voltage = rs.getDouble(6);
+                sensors[i][0] = time;
+                sensors[i][1] = id;
+                sensors[i][2] = temp;
+                sensors[i][3] = hum;
+                sensors[i][4] = light;
+                sensors[i][5] = voltage;
             }
+            Main.total_temp_avg = Main.total_temp_avg/Main.NUM_OF_SENSORS;
+            System.out.println("Total Avg Temp: " + Main.total_temp_avg);
         } catch (SQLException e) {
             //e.printStackTrace();
         }
