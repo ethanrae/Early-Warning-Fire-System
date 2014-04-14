@@ -35,6 +35,7 @@ public class View extends JFrame {
     public static JPanel leftMainPanel;
     public static JPanel gridPanel;
     public static JLabel alertLabel;
+    public static JMenuItem export;
     public static Controller listener;
 
     public static JPanel getRightMainPanel() {
@@ -56,7 +57,7 @@ public class View extends JFrame {
     public View() {
         super();
 
-        createMenuBar();
+        
         setSize(WIDTH, HEIGHT);
         setLayout(new BorderLayout());
         setTitle("Early Warning System");
@@ -64,6 +65,7 @@ public class View extends JFrame {
 
         //setup the listener that manages are button clicks
         listener = new Controller();
+        createMenuBar();
 
         //setup an exit button
         JButton closeButton = new JButton("Close");
@@ -200,7 +202,11 @@ public class View extends JFrame {
         JMenu menu = new JMenu("File");
         menu.setMnemonic(KeyEvent.VK_A);
         JMenuItem menuItem = new JMenuItem("Close", KeyEvent.VK_C);
+        export = new JMenuItem("Export to Excel Spreadsheet", KeyEvent.VK_E);
+        menuItem.addActionListener(listener);
+        export.addActionListener(listener);
         menu.add(menuItem);
+        menu.add(export);
         menuBar.add(menu);
         setJMenuBar(menuBar);
     }
