@@ -131,6 +131,7 @@ public class View extends JFrame {
         add(leftMainPanel, BorderLayout.WEST);
         rightMainPanel.add(gridPanel, BorderLayout.CENTER);
         add(rightMainPanel, BorderLayout.CENTER);
+        pack();
     }
 
     public static void setGridAlertColors(JPanel grid) {
@@ -147,6 +148,7 @@ public class View extends JFrame {
             }
 
             JLabel sensor = new JLabel("●", JLabel.CENTER);
+            //JLabel sensor = new JLabel();
             switch (alertColor) {
                 case 0:
 
@@ -161,40 +163,9 @@ public class View extends JFrame {
             }
             sensor.setOpaque(true);
             sensor.setBorder(BorderFactory.createLineBorder(Color.black));
+            sensor.setIgnoreRepaint(true);
             grid.add(sensor);
         }
-    }
-
-    public static void updateCellColors() {
-        try {
-            Component[] comp = gridPanel.getComponents();
-            int row_index = 0;
-            for (int r = 0; r < 32; r++) {
-                for (int c = 0; c < 32; c++) {
-                    Component cell = comp[row_index];
-                    double sensor_temp_at_index = (double) table_model.getValueAt(row_index, 2);
-                    //System.out.println("#" + i + " " + sensor_temp_at_index);
-                    row_index++;
-                    if (sensor_temp_at_index <= Main.total_temp_avg) {
-                        if (cell.getBackground() != Color.green) {
-                            cell.setBackground(Color.green);
-                        }
-                    } else if (sensor_temp_at_index <= (Main.total_temp_avg + (Main.total_temp_avg * 0.10))) {
-                        if (cell.getBackground() != Color.yellow) {
-                            cell.setBackground(Color.yellow);
-                        }
-                    } else if (sensor_temp_at_index > (Main.total_temp_avg + (Main.total_temp_avg * 0.10))) {
-                        if (cell.getBackground() != Color.red) {
-                            cell.setBackground(Color.red);
-                        }
-                    }
-                }
-            }
-
-        } catch (Exception ex) {
-        }
-
-        //gridPanel.repaint();
     }
 
     public void createMenuBar() {

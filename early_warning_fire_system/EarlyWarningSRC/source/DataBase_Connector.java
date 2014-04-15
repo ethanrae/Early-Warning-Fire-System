@@ -270,6 +270,7 @@ public final class DataBase_Connector {
                 sensors[i][5] = voltage;
             }
             Main.total_temp_avg = Main.total_temp_avg / Main.NUM_OF_SENSORS;
+            
             if (View.alertLabel != null) {
                 if (Main.total_temp_avg <= 20) {
                     View.alertLabel.setBackground(Color.green);

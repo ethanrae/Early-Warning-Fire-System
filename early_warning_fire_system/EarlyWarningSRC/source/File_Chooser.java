@@ -6,7 +6,6 @@
 package source;
 
 import java.io.File;
-import java.io.FileFilter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,7 +39,7 @@ public class File_Chooser implements Runnable {
         
         if (returnVal == JFileChooser.APPROVE_OPTION) {
 
-            System.out.println("getSelectedFile() : " + fc.getSelectedFile());
+            //System.out.println("getSelectedFile() : " + fc.getSelectedFile());
             save_directory = fc.getSelectedFile().getPath();
             Excel_Exporter ee = new Excel_Exporter();
                 File output_file = new File(save_directory + ".xls");

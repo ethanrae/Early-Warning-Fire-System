@@ -6,7 +6,6 @@
 package source;
 
 import java.io.File;
-import javax.swing.JTable;
 import jxl.*;
 import jxl.write.Label;
 import jxl.write.WritableSheet;
