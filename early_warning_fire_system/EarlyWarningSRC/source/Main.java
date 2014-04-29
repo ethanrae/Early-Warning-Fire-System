@@ -1,10 +1,8 @@
 package source;
 
 import java.awt.Color;
-import java.awt.Component;
 import static java.lang.Thread.sleep;
-import javax.swing.JLabel;
-import static source.View.gridPanel;
+import static source.View.updateGridCellColors;
 import static source.View.table_model;
 
 /**
@@ -23,14 +21,21 @@ public class Main {
     public static String table_name = "SENSORS"; //The name of the data base table used in the program
     public static String[] sensor_filenames = {"time0.0_Sensors.txt", "time0.5_Sensors.txt", "time1.0_Sensors.txt", "time1.5_Sensors.txt", "time2.0_Sensors.txt", "time2.5_Sensors.txt", "time3.0_Sensors.txt", "time3.5_Sensors.txt", "time4.0_Sensors.txt", "time4.5_Sensors.txt", "time5.0_Sensors.txt"}; //The time incremented data text files for 1024 sensors each
     public static DataBase_Connector db_helper; //Creating global static database helper to avoid repeated 'new' calls
+    public static Controller listener = new Controller();
     public static final Color RED = Color.red;
     public static final Color YELLOW = Color.yellow;
     public static final Color GREEN = Color.green;
+    public static final String appName = "Early Warning Fire System";
     /*
      The main program of the early warning fire system
      */
 
     public static void main(String[] args) {
+        if (System.getProperty("os.name").contains("Mac")) {
+            System.setProperty("com.apple.mrj.application.apple.menu.about.name", appName);
+            System.setProperty("apple.laf.useScreenMenuBar", "true");
+            
+        }
         //Start database server programmatically
         db_helper = new DataBase_Connector();
         db_helper.startDataBaseServer();
@@ -102,7 +107,7 @@ public class Main {
                         //update table model with new data from database
                         table_model.all_sensors = db_helper.getSensors();
 
-                        updateCellColors();
+                        updateGridCellColors();
 
                         //notify the table to update its view
                         table_model.fireTableDataChanged();
@@ -115,38 +120,5 @@ public class Main {
                 }
             }
         }
-    }
-
-    public static void updateCellColors() {
-        try {
-            Component[] comp = gridPanel.getComponents();
-            final int length = table_model.getRowCount();
-            JLabel cell;
-            double sensor_temp_at_index;
-            double avg_plus_ten_perc = (Main.total_temp_avg + (Main.total_temp_avg * 0.10));
-            gridPanel.setIgnoreRepaint(true);
-            for (int i = 0; i < length; i++) {
-                cell = (JLabel)comp[i];
-
-                sensor_temp_at_index = (double) table_model.getValueAt(i, 2);
-
-                if (sensor_temp_at_index <= Main.total_temp_avg) {
-                    if(cell.getBackground() != GREEN)
-                        cell.setBackground(GREEN);
-                } else if (sensor_temp_at_index <= avg_plus_ten_perc) {
-                    if(cell.getBackground() != YELLOW)
-                        cell.setBackground(YELLOW);
-                } else {
-                    if(cell.getBackground() != RED)
-                        cell.setBackground(RED);
-                }
-            }
-            gridPanel.setIgnoreRepaint(false);
-            gridPanel.repaint();
-
-        } catch (Exception ex) {
-        }
-
-        //gridPanel.repaint();
     }
 }

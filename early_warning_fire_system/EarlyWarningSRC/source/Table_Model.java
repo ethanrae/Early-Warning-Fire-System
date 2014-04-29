@@ -19,7 +19,6 @@ public class Table_Model extends AbstractTableModel {
         showing_all_sensors = true;
     }
 
-
     @Override
     public int getRowCount() {
         if (all_sensors == null) {

@@ -8,6 +8,8 @@ import java.awt.Color;
 import java.net.InetAddress;
 import java.sql.*;
 import org.apache.derby.drda.NetworkServerControl;
+import static source.View.Avg_Temp_Img;
+import static source.View.Avg_Temp_Text;
 
 public final class DataBase_Connector {
 
@@ -270,21 +272,19 @@ public final class DataBase_Connector {
                 sensors[i][5] = voltage;
             }
             Main.total_temp_avg = Main.total_temp_avg / Main.NUM_OF_SENSORS;
-            
-            if (View.alertLabel != null) {
-                if (Main.total_temp_avg <= 20) {
-                    View.alertLabel.setBackground(Color.green);
-                } else if (Main.total_temp_avg <= 30) {
-                    View.alertLabel.setBackground(Color.yellow);
-                } else if (Main.total_temp_avg <= 40) {
-                    View.alertLabel.setBackground(Color.orange);
-                } else {
-                    View.alertLabel.setBackground(Color.red);
-                }
-                View.alertText.setText("\tAverage Temperature: " + Main.total_temp_avg);
-                
-            }
 
+            if (Avg_Temp_Img != null) {
+                if (Main.total_temp_avg <= 20) {
+                    Avg_Temp_Img.setBackground(Color.green);
+                } else if (Main.total_temp_avg <= 30) {
+                    Avg_Temp_Img.setBackground(Color.yellow);
+                } else if (Main.total_temp_avg <= 40) {
+                    Avg_Temp_Img.setBackground(Color.orange);
+                } else {
+                    Avg_Temp_Img.setBackground(Color.red);
+                }
+                Avg_Temp_Text.setText("\tAverage Temperature: " + Main.total_temp_avg);
+            }
             //System.out.println("Total Avg Temp: " + Main.total_temp_avg);
         } catch (SQLException e) {
             //e.printStackTrace();
