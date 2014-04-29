@@ -69,10 +69,9 @@ public class View extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Early Warning System");
-        setBounds(new java.awt.Rectangle(0, 22, 1043, 679));
+        setBounds(new java.awt.Rectangle(0, 22, 1043, 659));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setName("window"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1043, 706));
 
         Left_Panel.setPreferredSize(new java.awt.Dimension(400, 630));
 
