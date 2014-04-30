@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package source;
 
 import java.io.File;
@@ -11,7 +6,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import static source.Main.window;
 
 /**
  *
@@ -37,7 +31,7 @@ public class File_Chooser implements Runnable {
         fc.setCurrentDirectory(new java.io.File("."));
         fc.removeChoosableFileFilter(fc.getFileFilter());
         fc.setFileFilter(new FileNameExtensionFilter("Microsoft Excel Documents", ".xls"));
-        int returnVal = fc.showSaveDialog(window);
+        int returnVal = fc.showSaveDialog(null);
 
         if (returnVal == JFileChooser.APPROVE_OPTION) {
 

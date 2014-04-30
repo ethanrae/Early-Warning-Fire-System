@@ -1,24 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package source;
 
-import java.awt.Color;
-import java.awt.GridLayout;
-import static java.lang.Thread.sleep;
-import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import static source.Main.GREEN;
-import static source.Main.NUM_OF_SENSORS;
-import static source.Main.RED;
-import static source.Main.YELLOW;
+import javax.swing.JTable;
 import static source.Main.db_helper;
 import static source.Main.listener;
-import static source.Main.sensor_filenames;
-import static source.Main.table_name;
 
 /**
  *
@@ -29,9 +15,8 @@ public class View extends javax.swing.JFrame {
     /**
      * Creates new form NewView
      */
-    public static Table_Model table_model;
-
     public View() {
+        table_model = new Table_Model(db_helper.getSensors());
         initComponents();
     }
 
@@ -45,27 +30,28 @@ public class View extends javax.swing.JFrame {
     private void initComponents() {
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-        Left_Panel = new javax.swing.JPanel();
-        Alert_Level_Panel = new javax.swing.JPanel();
-        Avg_Temp_Img = new javax.swing.JLabel();
-        Avg_Temp_Text = new javax.swing.JLabel();
-        Table_Panel = new javax.swing.JPanel();
-        Table_Scroll_Panel = new javax.swing.JScrollPane();
-        Sensor_Table = new javax.swing.JTable();
-        Button_Panel = new javax.swing.JPanel();
-        View_Selection_Button = new javax.swing.JButton();
-        Close_Button = new javax.swing.JButton();
-        Close_Button.addActionListener(listener);
-        Refresh_Button = new javax.swing.JButton();
-        Refresh_Button.addActionListener(listener);
-        Right_Panel = new javax.swing.JPanel();
-        Grid_Panel = new javax.swing.JPanel();
-        Menu_Bar = new javax.swing.JMenuBar();
-        Menu_File = new javax.swing.JMenu();
-        Menu_Export = new javax.swing.JMenuItem();
-        Menu_Export.addActionListener(listener);
-        Menu_Close = new javax.swing.JMenuItem();
-        Menu_Close.addActionListener(listener);
+        left_Panel = new javax.swing.JPanel();
+        alert_Level_Panel = new javax.swing.JPanel();
+        avg_Temp_Img = new javax.swing.JLabel();
+        avg_Temp_Text = new javax.swing.JLabel();
+        table_Panel = new javax.swing.JPanel();
+        table_Scroll_Panel = new javax.swing.JScrollPane();
+        sensor_Table = new javax.swing.JTable();
+        button_Panel = new javax.swing.JPanel();
+        view_Selection_Button = new javax.swing.JButton();
+        view_Selection_Button.addActionListener(listener);
+        close_Button = new javax.swing.JButton();
+        close_Button.addActionListener(listener);
+        refresh_Button = new javax.swing.JButton();
+        refresh_Button.addActionListener(listener);
+        right_Panel = new javax.swing.JPanel();
+        grid_Panel = new javax.swing.JPanel();
+        menu_Bar = new javax.swing.JMenuBar();
+        menu_File = new javax.swing.JMenu();
+        menu_Export = new javax.swing.JMenuItem();
+        menu_Export.addActionListener(listener);
+        menu_Close = new javax.swing.JMenuItem();
+        menu_Close.addActionListener(listener);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Early Warning System");
@@ -73,137 +59,126 @@ public class View extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setName("window"); // NOI18N
 
-        Left_Panel.setPreferredSize(new java.awt.Dimension(400, 630));
+        left_Panel.setPreferredSize(new java.awt.Dimension(400, 630));
 
-        Alert_Level_Panel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        alert_Level_Panel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        Avg_Temp_Img.setText(" ");
-        Avg_Temp_Img.setOpaque(true);
+        avg_Temp_Img.setText(" ");
+        avg_Temp_Img.setOpaque(true);
 
-        Avg_Temp_Text.setText(" ");
+        avg_Temp_Text.setText(" ");
 
-        javax.swing.GroupLayout Alert_Level_PanelLayout = new javax.swing.GroupLayout(Alert_Level_Panel);
-        Alert_Level_Panel.setLayout(Alert_Level_PanelLayout);
-        Alert_Level_PanelLayout.setHorizontalGroup(
-            Alert_Level_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Alert_Level_PanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout alert_Level_PanelLayout = new javax.swing.GroupLayout(alert_Level_Panel);
+        alert_Level_Panel.setLayout(alert_Level_PanelLayout);
+        alert_Level_PanelLayout.setHorizontalGroup(
+            alert_Level_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(alert_Level_PanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Avg_Temp_Img, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(avg_Temp_Img, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(Avg_Temp_Text, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(avg_Temp_Text, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        Alert_Level_PanelLayout.setVerticalGroup(
-            Alert_Level_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Alert_Level_PanelLayout.createSequentialGroup()
+        alert_Level_PanelLayout.setVerticalGroup(
+            alert_Level_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(alert_Level_PanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(Alert_Level_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Avg_Temp_Img, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
-                    .addComponent(Avg_Temp_Text))
+                .addGroup(alert_Level_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(avg_Temp_Img, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
+                    .addComponent(avg_Temp_Text))
                 .addContainerGap())
         );
 
-        Table_Panel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        table_Panel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        Table_Scroll_Panel.setBorder(null);
+        table_Scroll_Panel.setBorder(null);
 
-        Sensor_Table.setAutoCreateRowSorter(true);
-        Sensor_Table.setModel(table_model);
-        Table_Scroll_Panel.setViewportView(Sensor_Table);
+        sensor_Table.setAutoCreateRowSorter(true);
+        sensor_Table.setModel(table_model);
+        table_Scroll_Panel.setViewportView(sensor_Table);
 
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, Button_Panel, org.jdesktop.beansbinding.ELProperty.create("true"), Button_Panel, org.jdesktop.beansbinding.BeanProperty.create("opaque"));
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, button_Panel, org.jdesktop.beansbinding.ELProperty.create("true"), button_Panel, org.jdesktop.beansbinding.BeanProperty.create("opaque"));
         bindingGroup.addBinding(binding);
 
-        View_Selection_Button.addActionListener(listener);
-        View_Selection_Button.setText("View Selection");
+        view_Selection_Button.setText("View Selection");
 
-        Close_Button.setText("Close");
+        close_Button.setText("Close");
 
-        Refresh_Button.setText("Refresh");
+        refresh_Button.setText("Refresh");
 
-        javax.swing.GroupLayout Button_PanelLayout = new javax.swing.GroupLayout(Button_Panel);
-        Button_Panel.setLayout(Button_PanelLayout);
-        Button_PanelLayout.setHorizontalGroup(
-            Button_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Button_PanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout button_PanelLayout = new javax.swing.GroupLayout(button_Panel);
+        button_Panel.setLayout(button_PanelLayout);
+        button_PanelLayout.setHorizontalGroup(
+            button_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(button_PanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(View_Selection_Button)
+                .addComponent(view_Selection_Button)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Refresh_Button)
+                .addComponent(refresh_Button)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Close_Button)
+                .addComponent(close_Button)
                 .addContainerGap())
         );
-        Button_PanelLayout.setVerticalGroup(
-            Button_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Button_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(Close_Button)
-                .addComponent(Refresh_Button)
-                .addComponent(View_Selection_Button))
+        button_PanelLayout.setVerticalGroup(
+            button_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(button_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(close_Button)
+                .addComponent(refresh_Button)
+                .addComponent(view_Selection_Button))
         );
 
-        javax.swing.GroupLayout Table_PanelLayout = new javax.swing.GroupLayout(Table_Panel);
-        Table_Panel.setLayout(Table_PanelLayout);
-        Table_PanelLayout.setHorizontalGroup(
-            Table_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Table_Scroll_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
-            .addComponent(Button_Panel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        javax.swing.GroupLayout table_PanelLayout = new javax.swing.GroupLayout(table_Panel);
+        table_Panel.setLayout(table_PanelLayout);
+        table_PanelLayout.setHorizontalGroup(
+            table_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(table_Scroll_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
+            .addComponent(button_Panel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        Table_PanelLayout.setVerticalGroup(
-            Table_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Table_PanelLayout.createSequentialGroup()
-                .addComponent(Table_Scroll_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
+        table_PanelLayout.setVerticalGroup(
+            table_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(table_PanelLayout.createSequentialGroup()
+                .addComponent(table_Scroll_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Button_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(button_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
         );
 
-        javax.swing.GroupLayout Left_PanelLayout = new javax.swing.GroupLayout(Left_Panel);
-        Left_Panel.setLayout(Left_PanelLayout);
-        Left_PanelLayout.setHorizontalGroup(
-            Left_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Alert_Level_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(Table_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        javax.swing.GroupLayout left_PanelLayout = new javax.swing.GroupLayout(left_Panel);
+        left_Panel.setLayout(left_PanelLayout);
+        left_PanelLayout.setHorizontalGroup(
+            left_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(alert_Level_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(table_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        Left_PanelLayout.setVerticalGroup(
-            Left_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Left_PanelLayout.createSequentialGroup()
-                .addComponent(Alert_Level_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        left_PanelLayout.setVerticalGroup(
+            left_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(left_PanelLayout.createSequentialGroup()
+                .addComponent(alert_Level_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Table_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addComponent(table_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
         );
 
-        Right_Panel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        Right_Panel.setOpaque(false);
-        Right_Panel.setPreferredSize(new java.awt.Dimension(625, 625));
-        Right_Panel.setLayout(new java.awt.BorderLayout());
+        right_Panel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        right_Panel.setOpaque(false);
+        right_Panel.setPreferredSize(new java.awt.Dimension(625, 625));
+        right_Panel.setLayout(new java.awt.BorderLayout());
 
-        Grid_Panel.setLayout(new java.awt.GridLayout(32, 32));
-        Right_Panel.add(Grid_Panel, java.awt.BorderLayout.CENTER);
+        grid_Panel.setLayout(new java.awt.GridLayout(32, 32));
+        right_Panel.add(grid_Panel, java.awt.BorderLayout.CENTER);
 
-        Menu_File.setText("File");
+        menu_File.setText("File");
 
-        Menu_Export.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
-        Menu_Export.setText("Export Data to Excel Spreadsheet");
-        Menu_Export.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Menu_ExportActionPerformed(evt);
-            }
-        });
-        Menu_File.add(Menu_Export);
+        menu_Export.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
+        menu_Export.setText("Export Data to Excel Spreadsheet");
+        menu_File.add(menu_Export);
 
-        Menu_Close.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
-        Menu_Close.setText("Close");
-        Menu_Close.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Menu_CloseActionPerformed(evt);
-            }
-        });
-        Menu_File.add(Menu_Close);
+        menu_Close.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
+        menu_Close.setText("Close");
+        menu_File.add(menu_Close);
 
-        Menu_Bar.add(Menu_File);
+        menu_Bar.add(menu_File);
 
-        setJMenuBar(Menu_Bar);
+        setJMenuBar(menu_Bar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -211,9 +186,9 @@ public class View extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Left_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(left_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Right_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(right_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -221,8 +196,8 @@ public class View extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Right_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Left_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE))
+                    .addComponent(right_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(left_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -231,92 +206,91 @@ public class View extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Menu_CloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Menu_CloseActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Menu_CloseActionPerformed
-
-    private void Menu_ExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Menu_ExportActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Menu_ExportActionPerformed
-    public static void updateGridCellColors() {
-        try {
-            if (Right_Panel != null) {
-                double sensor_temp_at_index;
-                final double avg_plus_ten_perc = (Main.total_temp_avg + (Main.total_temp_avg * 0.10));
-                JPanel newGrid = new JPanel(new GridLayout(32, 32));
-                for (int i = 0; i < NUM_OF_SENSORS; i++) {
-                    JLabel cell = new JLabel("•", JLabel.CENTER);
-                    cell.setIgnoreRepaint(true);
-                    sensor_temp_at_index = (double) table_model.getValueAt(i, 2);
-
-                    if (sensor_temp_at_index <= Main.total_temp_avg) {
-                        cell.setBackground(GREEN);
-                    } else if (sensor_temp_at_index <= avg_plus_ten_perc) {
-                        cell.setBackground(YELLOW);
-                    } else {
-                        cell.setBackground(RED);
-                    }
-                    cell.setOpaque(true);
-                    cell.setBorder(BorderFactory.createLineBorder(Color.black));
-                    newGrid.add(cell);
-                }
-                Right_Panel.removeAll();
-                Right_Panel.add(newGrid);
-                Right_Panel.revalidate();
-                Right_Panel.repaint();
-            }
-        } catch (Exception ex) {
-        }
+    public JLabel getAvg_Temp_Img() {
+        return avg_Temp_Img;
     }
-    
-    public static class DataUpdate implements Runnable {
 
-        //Get current data from existing database
-        Object[][] db_sensors = db_helper.getSensors();
-        @Override
-        public void run() {
-            while (true) {
-
-                for (String sensor_filename : sensor_filenames) {
-                    try {
-                        //update the data base with new data
-                        db_helper.updateDatabase(table_name, sensor_filename);
-
-                        //update table model with new data from database
-                        table_model.all_sensors = db_helper.getSensors();
-
-                        updateGridCellColors();
-
-                        //notify the table to update its view
-                        table_model.fireTableDataChanged();
-
-                        //sleep 30 seconds
-                        Thread.sleep(10000);//10s
-
-                    } catch (Exception ex) {
-                    }
-                }
-            }
-        }
+    public void setAvg_Temp_Img(JLabel avg_Temp_Img) {
+        this.avg_Temp_Img = avg_Temp_Img;
     }
+
+    public JLabel getAvg_Temp_Text() {
+        return avg_Temp_Text;
+    }
+
+    public JPanel getAlert_Level_Panel() {
+        return alert_Level_Panel;
+    }
+
+    public void setAlert_Level_Panel(JPanel alert_Level_Panel) {
+        this.alert_Level_Panel = alert_Level_Panel;
+    }
+
+    public void setAvg_Temp_Text(JLabel avg_Temp_Text) {
+        this.avg_Temp_Text = avg_Temp_Text;
+    }
+
+    public JPanel getRight_Panel() {
+        return right_Panel;
+    }
+
+    public void setRight_Panel(JPanel right_Panel) {
+        this.right_Panel = right_Panel;
+    }
+
+    public JTable getSensor_Table() {
+        return sensor_Table;
+    }
+
+    public void setSensor_Table(JTable sensor_Table) {
+        this.sensor_Table = sensor_Table;
+    }
+
+    public double getTotal_temp_avg() {
+        return total_temp_avg;
+    }
+
+    public void setTotal_temp_avg(double total_temp_avg) {
+        this.total_temp_avg = total_temp_avg;
+    }
+
+    public Table_Model getTable_model() {
+        return table_model;
+    }
+
+    public void setTable_model(Table_Model table_model) {
+        this.table_model = table_model;
+    }
+
+    public JPanel getGrid_Panel() {
+        return grid_Panel;
+    }
+
+    public void setGrid_Panel(JPanel grid_Panel) {
+        this.grid_Panel = grid_Panel;
+    }
+
+    private Table_Model table_model;
+    private double total_temp_avg = 0.0;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel Alert_Level_Panel;
-    public static javax.swing.JLabel Avg_Temp_Img;
-    public static javax.swing.JLabel Avg_Temp_Text;
-    private javax.swing.JPanel Button_Panel;
-    public static javax.swing.JButton Close_Button;
-    public static javax.swing.JPanel Grid_Panel;
-    private javax.swing.JPanel Left_Panel;
-    private javax.swing.JMenuBar Menu_Bar;
-    public static javax.swing.JMenuItem Menu_Close;
-    public static javax.swing.JMenuItem Menu_Export;
-    private javax.swing.JMenu Menu_File;
-    public static javax.swing.JButton Refresh_Button;
-    public static javax.swing.JPanel Right_Panel;
-    public static javax.swing.JTable Sensor_Table;
-    private javax.swing.JPanel Table_Panel;
-    private javax.swing.JScrollPane Table_Scroll_Panel;
-    public static javax.swing.JButton View_Selection_Button;
+    private javax.swing.JPanel alert_Level_Panel;
+    private javax.swing.JLabel avg_Temp_Img;
+    private javax.swing.JLabel avg_Temp_Text;
+    private javax.swing.JPanel button_Panel;
+    public static javax.swing.JButton close_Button;
+    private javax.swing.JPanel grid_Panel;
+    private javax.swing.JPanel left_Panel;
+    private javax.swing.JMenuBar menu_Bar;
+    public static javax.swing.JMenuItem menu_Close;
+    public static javax.swing.JMenuItem menu_Export;
+    private javax.swing.JMenu menu_File;
+    public static javax.swing.JButton refresh_Button;
+    private javax.swing.JPanel right_Panel;
+    private javax.swing.JTable sensor_Table;
+    private javax.swing.JPanel table_Panel;
+    private javax.swing.JScrollPane table_Scroll_Panel;
+    private javax.swing.JButton view_Selection_Button;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
+
 }

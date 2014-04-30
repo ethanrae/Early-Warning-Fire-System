@@ -1,5 +1,6 @@
 package source;
 
+import java.util.PriorityQueue;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -45,9 +46,17 @@ public class Table_Model extends AbstractTableModel {
         }
     }
 
+    public Object getValueAtFromAllSensors(int rowIndex, int columnIndex) {
+        return all_sensors[rowIndex][columnIndex];
+    }
+
     @Override
     public Class getColumnClass(int columnIndex) {
-        return getValueAt(0, columnIndex).getClass();
+        if (getValueAt(0, columnIndex) == null) {
+            return String.class;
+        } else {
+            return getValueAt(0, columnIndex).getClass();
+        }
     }
 
     @Override
@@ -79,6 +88,17 @@ public class Table_Model extends AbstractTableModel {
             } else {
                 selectedRows[rowIndex] = selected_sensors[selected_index[rowIndex]];
             }
+
+        }
+        return selectedRows;
+    }
+
+    public Object[][] getSelectedRows(PriorityQueue selected_index) {
+        Object[] selected_index_array = selected_index.toArray();
+        Object[][] selectedRows = new Object[selected_index.size()][6];
+        for (int rowIndex = 0; rowIndex < selected_index.size(); rowIndex++) {
+
+            selectedRows[rowIndex] = all_sensors[(Integer) selected_index_array[rowIndex]];
 
         }
         return selectedRows;

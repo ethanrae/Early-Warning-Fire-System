@@ -5,11 +5,13 @@ package source;
  * @author Ethan Rae
  */
 import java.awt.Color;
+import java.io.IOException;
 import java.net.InetAddress;
+import java.net.Socket;
 import java.sql.*;
+import javax.swing.JLabel;
 import org.apache.derby.drda.NetworkServerControl;
-import static source.View.Avg_Temp_Img;
-import static source.View.Avg_Temp_Text;
+import static source.Main.view;
 
 public final class DataBase_Connector {
 
@@ -68,23 +70,9 @@ public final class DataBase_Connector {
 
     private boolean createConnection() {
         try {
-            //Properties prop = new Properties();
 
-            // the configuration file name
-            //String fileName = "app.config";
-            //InputStream is;
-            //is = new FileInputStream(fileName);
-            // load the properties file
-            //prop.load(is);
-            // get the value for app.name key
-            //System.out.println(prop.getProperty("user.name"));
-            //String dName = prop.getProperty("user.name");
             String dName = "student";
-            // get the value for app.version key
-            //System.out.println(prop.getProperty("user.password"));
-            //String dPass = prop.getProperty("user.password");
             String dPass = "student";
-            //String host = "jdbc:derby://localhost:1527/CustomerMileageDB";
             String host = "jdbc:derby://localhost:1527/SensorDB;create=true";
 
             con = DriverManager.getConnection(host, dName, dPass);
@@ -161,18 +149,16 @@ public final class DataBase_Connector {
 
             int result = ps.executeUpdate();
 
-            if (result > 0) {
-                System.out.println("Data Updated");
-            } else {
-                //System.err.println("Something Happend");
+            if (result >= 0) {
+                System.out.println("Database Updated");
             }
+
         } catch (SQLException e) {
-            System.err.println("updateDatabase() Exception caught");
-            e.printStackTrace();
+            //System.err.println("updateDatabase() Exception caught");
+            //e.printStackTrace();
         } finally {
             closeConnection();
         }
-
     }
 
     public void insertData(Sensor S) {
@@ -237,6 +223,15 @@ public final class DataBase_Connector {
         }
     }
 
+    public boolean hostAvailabilityCheck() {
+        try (Socket s = new Socket("localhost", 1527)) {
+            return true;
+        } catch (IOException ex) {
+            /* ignore */
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         return "Data Base Connector";
@@ -245,7 +240,7 @@ public final class DataBase_Connector {
     public Object[][] getSensors() {
         createConnection();
         Object[][] sensors = new Object[1024][6];
-        Main.total_temp_avg = 0.0;
+        Double total_temp_avg = 0.0;
         try {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select * from STUDENT.SENSORS");
@@ -260,7 +255,7 @@ public final class DataBase_Connector {
                 time = rs.getDouble(1);
                 id = rs.getInt(2);
                 temp = rs.getDouble(3);
-                Main.total_temp_avg += temp;
+                total_temp_avg += temp;
                 hum = rs.getDouble(4);
                 light = rs.getDouble(5);
                 voltage = rs.getDouble(6);
@@ -271,19 +266,25 @@ public final class DataBase_Connector {
                 sensors[i][4] = light;
                 sensors[i][5] = voltage;
             }
-            Main.total_temp_avg = Main.total_temp_avg / Main.NUM_OF_SENSORS;
+            total_temp_avg = (total_temp_avg / Main.NUM_OF_SENSORS);
 
-            if (Avg_Temp_Img != null) {
-                if (Main.total_temp_avg <= 20) {
-                    Avg_Temp_Img.setBackground(Color.green);
-                } else if (Main.total_temp_avg <= 30) {
-                    Avg_Temp_Img.setBackground(Color.yellow);
-                } else if (Main.total_temp_avg <= 40) {
-                    Avg_Temp_Img.setBackground(Color.orange);
+            if (view != null) {
+                JLabel avg_Temp_Img = view.getAvg_Temp_Img();
+                JLabel avg_Temp_Text = view.getAvg_Temp_Text();
+                if (total_temp_avg <= 20) {
+                    avg_Temp_Img.setBackground(Color.green);
+                } else if (total_temp_avg <= 30) {
+                    avg_Temp_Img.setBackground(Color.yellow);
+                } else if (total_temp_avg <= 40) {
+                    avg_Temp_Img.setBackground(Color.orange);
                 } else {
-                    Avg_Temp_Img.setBackground(Color.red);
+                    avg_Temp_Img.setBackground(Color.red);
                 }
-                Avg_Temp_Text.setText("\tAverage Temperature: " + Main.total_temp_avg);
+                Table_Model table_model = view.getTable_model();
+                if (Table_Model.showing_all_sensors) {
+                    avg_Temp_Text.setText("\tAverage Temperature: " + total_temp_avg);
+                }
+                view.setTotal_temp_avg(total_temp_avg);
             }
             //System.out.println("Total Avg Temp: " + Main.total_temp_avg);
         } catch (SQLException e) {
