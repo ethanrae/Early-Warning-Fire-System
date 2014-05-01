@@ -6,12 +6,14 @@
 
 package source;
 
+import static java.lang.Thread.sleep;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static source.Main.db_helper;
 
 /**
  *
@@ -19,23 +21,40 @@ import static org.junit.Assert.*;
  */
 public class DataBase_ConnectorTest {
     
+    private static DataBase_Connector instance;
+    
     public DataBase_ConnectorTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
     }
     
     @Before
     public void setUp() {
+        GenerateInstance();
     }
     
     @After
     public void tearDown() {
+        ShutdownInstance();
+    }
+    
+    private static void GenerateInstance()
+    {
+        instance = new DataBase_Connector();
+        instance.startDataBaseServer();
+        while (!db_helper.hostAvailabilityCheck()) {
+            System.out.println("Server Not Started");
+            try {
+                sleep(1000);
+            } catch (InterruptedException ex) {
+
+            }
+        }
+        System.out.println("Server Started");
+    }
+    
+    private static void ShutdownInstance()
+    {
+        instance.shutdownDataBaseServer();
+        instance = null;
     }
 
     /**
