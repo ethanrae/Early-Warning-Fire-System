@@ -20,23 +20,38 @@ import static org.junit.Assert.*;
  */
 public class Table_ModelTest {
     
+    private static Table_Model instance = null;
+    private static Sensor[][] sensors = null;
+    private static final int width = 4;
+    private static final int height = 3;
+    
     public Table_ModelTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
     }
     
     @Before
     public void setUp() {
+        GenerateInstance();
     }
     
     @After
     public void tearDown() {
+        instance = null;
+        sensors = null;
+    }
+    
+    private static void GenerateInstance()
+    {
+        sensors = new Sensor[width][height];
+        
+        for (int x = 0; x < width; ++x)
+        {
+            for (int y = 0; y < height; ++y)
+            {
+                sensors[x][y] = new Sensor(0, 0, 0, 0, 0, 0);
+            }
+        }
+        
+        instance = new Table_Model(sensors);
     }
 
     /**
@@ -45,12 +60,9 @@ public class Table_ModelTest {
     @Test
     public void testGetRowCount() {
         System.out.println("getRowCount");
-        Table_Model instance = null;
-        int expResult = 0;
+        int expResult = width;
         int result = instance.getRowCount();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -59,12 +71,9 @@ public class Table_ModelTest {
     @Test
     public void testGetColumnCount() {
         System.out.println("getColumnCount");
-        Table_Model instance = null;
-        int expResult = 0;
+        int expResult = 6;
         int result = instance.getColumnCount();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -75,12 +84,9 @@ public class Table_ModelTest {
         System.out.println("getValueAt");
         int rowIndex = 0;
         int columnIndex = 0;
-        Table_Model instance = null;
-        Object expResult = null;
+        Object expResult = sensors[rowIndex][columnIndex];
         Object result = instance.getValueAt(rowIndex, columnIndex);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -91,27 +97,9 @@ public class Table_ModelTest {
         System.out.println("getValueAtFromAllSensors");
         int rowIndex = 0;
         int columnIndex = 0;
-        Table_Model instance = null;
-        Object expResult = null;
-        Object result = instance.getValueAtFromAllSensors(rowIndex, columnIndex);
+        Object expResult = sensors[rowIndex][columnIndex];
+        Object result = instance.getValueAt(rowIndex, columnIndex);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getColumnClass method, of class Table_Model.
-     */
-    @Test
-    public void testGetColumnClass() {
-        System.out.println("getColumnClass");
-        int columnIndex = 0;
-        Table_Model instance = null;
-        Class expResult = null;
-        Class result = instance.getColumnClass(columnIndex);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -122,12 +110,9 @@ public class Table_ModelTest {
         System.out.println("isCellEditable");
         int rowIndex = 0;
         int columnIndex = 0;
-        Table_Model instance = null;
         boolean expResult = false;
         boolean result = instance.isCellEditable(rowIndex, columnIndex);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -136,58 +121,51 @@ public class Table_ModelTest {
     @Test
     public void testSetValueAt() {
         System.out.println("setValueAt");
-        Object value = null;
+        Object value = new Sensor(1, 1, 1, 1, 1, 1);
         int rowIndex = 0;
         int columnIndex = 0;
-        Table_Model instance = null;
         instance.setValueAt(value, rowIndex, columnIndex);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Object expResult = value;
+        Object result = instance.getValueAt(rowIndex, columnIndex);
+        assertEquals(expResult, result);
     }
-
+    
     /**
      * Test of getColumnName method, of class Table_Model.
      */
     @Test
     public void testGetColumnName() {
+        //{"Time", "Sensor ID", "Temp", "Humidity", "Light", "Voltage"}
         System.out.println("getColumnName");
         int columnIndex = 0;
-        Table_Model instance = null;
-        String expResult = "";
+        String expResult = "Time";
         String result = instance.getColumnName(columnIndex);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getSelectedRows method, of class Table_Model.
-     */
-    @Test
-    public void testGetSelectedRows_intArr() {
-        System.out.println("getSelectedRows");
-        int[] selected_index = null;
-        Table_Model instance = null;
-        Object[][] expResult = null;
-        Object[][] result = instance.getSelectedRows(selected_index);
-        assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getSelectedRows method, of class Table_Model.
-     */
-    @Test
-    public void testGetSelectedRows_PriorityQueue() {
-        System.out.println("getSelectedRows");
-        PriorityQueue selected_index = null;
-        Table_Model instance = null;
-        Object[][] expResult = null;
-        Object[][] result = instance.getSelectedRows(selected_index);
-        assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        columnIndex = 1;
+        expResult = "Sensor ID";
+        result = instance.getColumnName(columnIndex);
+        assertEquals(expResult, result);
+        
+        columnIndex = 2;
+        expResult = "Temp";
+        result = instance.getColumnName(columnIndex);
+        assertEquals(expResult, result);
+        
+        columnIndex = 3;
+        expResult = "Humidity";
+        result = instance.getColumnName(columnIndex);
+        assertEquals(expResult, result);
+        
+        columnIndex = 4;
+        expResult = "Light";
+        result = instance.getColumnName(columnIndex);
+        assertEquals(expResult, result);
+        
+        columnIndex = 5;
+        expResult = "Voltage";
+        result = instance.getColumnName(columnIndex);
+        assertEquals(expResult, result);
     }
     
 }
