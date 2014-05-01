@@ -19,23 +19,24 @@ import static org.junit.Assert.*;
  */
 public class Grid_CellTest {
     
+    private static Grid_Cell instance = null;
+    
     public Grid_CellTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
     }
     
     @Before
     public void setUp() {
+        GenerateInstance();
     }
     
     @After
     public void tearDown() {
+        instance = null;
+    }
+    
+    private static void GenerateInstance()
+    {
+        instance = new Grid_Cell(0, 0);
     }
 
     /**
@@ -44,12 +45,9 @@ public class Grid_CellTest {
     @Test
     public void testGetCellX() {
         System.out.println("getCellX");
-        Grid_Cell instance = null;
         int expResult = 0;
         int result = instance.getCellX();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -58,12 +56,9 @@ public class Grid_CellTest {
     @Test
     public void testGetCellY() {
         System.out.println("getCellY");
-        Grid_Cell instance = null;
         int expResult = 0;
         int result = instance.getCellY();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -72,11 +67,11 @@ public class Grid_CellTest {
     @Test
     public void testSetCellX() {
         System.out.println("setCellX");
-        int x = 0;
-        Grid_Cell instance = null;
+        int x = 1;
         instance.setCellX(x);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int expResult = 1;
+        int result = instance.getCellX();
+        assertEquals(expResult, result);
     }
 
     /**
@@ -85,11 +80,11 @@ public class Grid_CellTest {
     @Test
     public void testSetCellY() {
         System.out.println("setCellY");
-        int y = 0;
-        Grid_Cell instance = null;
+        int y = 1;
         instance.setCellY(y);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int expResult = 1;
+        int result = instance.getCellY();
+        assertEquals(expResult, result);
     }
 
     /**
@@ -98,10 +93,10 @@ public class Grid_CellTest {
     @Test
     public void testSetSelected() {
         System.out.println("setSelected");
-        Grid_Cell instance = null;
         instance.setSelected();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        boolean expResult = true;
+        boolean result = instance.isSelected();
+        assertEquals(expResult, result);
     }
 
     /**
@@ -110,12 +105,9 @@ public class Grid_CellTest {
     @Test
     public void testIsSelected() {
         System.out.println("isSelected");
-        Grid_Cell instance = null;
         boolean expResult = false;
         boolean result = instance.isSelected();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }
