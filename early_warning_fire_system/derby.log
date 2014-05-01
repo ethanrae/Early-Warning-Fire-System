@@ -1,29 +1,28 @@
-Wed Apr 30 02:36:18 PDT 2014 : Apache Derby Network Server - 10.9.1.0 - (1344872) started and ready to accept connections on port 1527
-Wed Apr 30 02:36:18 PDT 2014 : Could not listen on port 1527 on host localhost:
+Wed Apr 30 19:16:59 PDT 2014 : Apache Derby Network Server - 10.9.1.0 - (1344872) started and ready to accept connections on port 1527
+Wed Apr 30 19:16:59 PDT 2014 : Could not listen on port 1527 on host 127.0.0.1:
  java.net.BindException: Address already in use
-An exception was thrown during network server startup. DRDA_ListenPort.S:Could not listen on port 1527 on host localhost:
+An exception was thrown during network server startup. DRDA_ListenPort.S:Could not listen on port 1527 on host 127.0.0.1:
  java.net.BindException: Address already in use
 java.lang.reflect.InvocationTargetException
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:483)
+	at java.lang.reflect.Method.invoke(Method.java:606)
 	at org.apache.derby.iapi.jdbc.DRDAServerStarter.run(Unknown Source)
-	at java.lang.Thread.run(Thread.java:745)
-Caused by: java.lang.Exception: DRDA_ListenPort.S:Could not listen on port 1527 on host localhost:
+	at java.lang.Thread.run(Thread.java:724)
+Caused by: java.lang.Exception: DRDA_ListenPort.S:Could not listen on port 1527 on host 127.0.0.1:
  java.net.BindException: Address already in use
 	at org.apache.derby.impl.drda.NetworkServerControlImpl.consolePropertyMessageWork(Unknown Source)
 	at org.apache.derby.impl.drda.NetworkServerControlImpl.consolePropertyMessage(Unknown Source)
 	at org.apache.derby.impl.drda.NetworkServerControlImpl.blockingStart(Unknown Source)
 	... 6 more
 ----------------------------------------------------------------
-Wed Apr 30 02:36:21 PDT 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-0145-b1fd-e62d-000001ec58a8 
-on database directory /Users/E/Dropbox/comp350/Re_Team2/early_warning_fire_system/SensorDB  with class loader sun.misc.Launcher$AppClassLoader@66d3c617 
-Loaded from file:/Users/E/Dropbox/comp350/Re_Team2/early_warning_fire_system/lib/derby.jar
+Wed Apr 30 19:16:59 PDT 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-0145-b592-0ed6-000003e8ffb0 
+on database directory /Users/adam.wardell303/Re_Team2/early_warning_fire_system/SensorDB  with class loader sun.misc.Launcher$AppClassLoader@68f507d2 
+Loaded from file:/Users/adam.wardell303/Re_Team2/early_warning_fire_system/lib/derby.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_05-b13
-user.dir=/Users/E/Dropbox/comp350/Re_Team2/early_warning_fire_system
+java.runtime.version=1.7.0_25-b15
+user.dir=/Users/adam.wardell303/Re_Team2/early_warning_fire_system
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
-Wed Apr 30 02:36:58 PDT 2014 : Apache Derby Network Server - 10.9.1.0 - (1344872) shutdown

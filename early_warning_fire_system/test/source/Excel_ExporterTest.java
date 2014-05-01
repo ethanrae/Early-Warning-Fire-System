@@ -7,6 +7,8 @@
 package source;
 
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -25,31 +27,18 @@ public class Excel_ExporterTest {
     
     @BeforeClass
     public static void setUpClass() {
+        TestUtilities.StartMain();
     }
     
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
-
     /**
      * Test of fillData method, of class Excel_Exporter.
      */
     @Test
     public void testFillData() {
         System.out.println("fillData");
-        File file = null;
+        File file = new File("testFillData.xls");
         Excel_Exporter instance = new Excel_Exporter();
         instance.fillData(file);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }
