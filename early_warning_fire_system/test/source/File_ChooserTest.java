@@ -24,18 +24,7 @@ public class File_ChooserTest {
     
     @BeforeClass
     public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
+        TestUtilities.StartMain();
     }
 
     /**
@@ -48,8 +37,6 @@ public class File_ChooserTest {
         String expResult = "";
         String result = instance.getSave_directory();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -58,10 +45,8 @@ public class File_ChooserTest {
     @Test
     public void testRun() {
         System.out.println("run");
-        File_Chooser instance = new File_Chooser();
-        instance.run();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        File_Chooser fc = new File_Chooser();
+        new Thread(fc).start();
     }
     
 }

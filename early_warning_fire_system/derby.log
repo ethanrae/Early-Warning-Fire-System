@@ -1,5 +1,5 @@
-Wed Apr 30 19:16:59 PDT 2014 : Apache Derby Network Server - 10.9.1.0 - (1344872) started and ready to accept connections on port 1527
-Wed Apr 30 19:16:59 PDT 2014 : Could not listen on port 1527 on host 127.0.0.1:
+Wed Apr 30 19:36:03 PDT 2014 : Apache Derby Network Server - 10.9.1.0 - (1344872) started and ready to accept connections on port 1527
+Wed Apr 30 19:36:03 PDT 2014 : Could not listen on port 1527 on host 127.0.0.1:
  java.net.BindException: Address already in use
 An exception was thrown during network server startup. DRDA_ListenPort.S:Could not listen on port 1527 on host 127.0.0.1:
  java.net.BindException: Address already in use
@@ -17,8 +17,8 @@ Caused by: java.lang.Exception: DRDA_ListenPort.S:Could not listen on port 1527 
 	at org.apache.derby.impl.drda.NetworkServerControlImpl.blockingStart(Unknown Source)
 	... 6 more
 ----------------------------------------------------------------
-Wed Apr 30 19:16:59 PDT 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-0145-b592-0ed6-000003e8ffb0 
+Wed Apr 30 19:36:03 PDT 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-0145-b5a3-83cc-000003e83228 
 on database directory /Users/adam.wardell303/Re_Team2/early_warning_fire_system/SensorDB  with class loader sun.misc.Launcher$AppClassLoader@68f507d2 
 Loaded from file:/Users/adam.wardell303/Re_Team2/early_warning_fire_system/lib/derby.jar
 java.vendor=Oracle Corporation
