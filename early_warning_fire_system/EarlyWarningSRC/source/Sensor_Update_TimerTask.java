@@ -18,7 +18,6 @@ public class Sensor_Update_TimerTask extends TimerTask {
     private int current_file_index;
     private final static String[] sensor_filenames = {"time0.0_Sensors.txt", "time0.5_Sensors.txt", "time1.0_Sensors.txt", "time1.5_Sensors.txt", "time2.0_Sensors.txt", "time2.5_Sensors.txt", "time3.0_Sensors.txt", "time3.5_Sensors.txt", "time4.0_Sensors.txt", "time4.5_Sensors.txt", "time5.0_Sensors.txt"}; //The time incremented data text files for 1024 sensors each
     private final static String table_name = "SENSORS"; //The name of the data base table used in the program
-    private static boolean firstRunDone = false;
 
     public Sensor_Update_TimerTask() {
         current_file_index = 0;
@@ -26,23 +25,14 @@ public class Sensor_Update_TimerTask extends TimerTask {
 
     @Override
     public void run() {
-
-        if (Table_Model.showing_all_sensors) {
-            if(!firstRunDone)
-            {
-                this.current_file_index = 0; 
-                firstRunDone = true;
-            }
+        
+        if(Table_Model.showing_all_sensors)
+        {
             //update the data base with new data
             db_helper.updateDatabase(table_name, sensor_filenames[current_file_index]);
-        
-            
         }
-        
-        if(firstRunDone)
-        {
-           this.current_file_index++; 
-        }
+
+        this.current_file_index++;
 
         if (current_file_index == sensor_filenames.length) {
             this.current_file_index = 0;

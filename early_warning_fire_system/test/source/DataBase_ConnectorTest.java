@@ -7,6 +7,7 @@
 package source;
 
 import static java.lang.Thread.sleep;
+import java.util.Vector;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -177,8 +178,8 @@ public class DataBase_ConnectorTest {
     public void testGetSensors() {
         System.out.println("getSensors");
         DataBase_Connector instance = new DataBase_Connector();
-        Object[][] expResult = null;
-        Object[][] result = instance.getSensors();
+        Object[] expResult = null;
+        Object[] result = instance.getSensors().toArray();
         assertArrayEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

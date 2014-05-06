@@ -28,7 +28,6 @@ public class View extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         left_Panel = new javax.swing.JPanel();
         alert_Level_Panel = new javax.swing.JPanel();
@@ -103,9 +102,6 @@ public class View extends javax.swing.JFrame {
         sensor_Table.setAutoCreateRowSorter(true);
         sensor_Table.setModel(table_model);
         table_Scroll_Panel.setViewportView(sensor_Table);
-
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, button_Panel, org.jdesktop.beansbinding.ELProperty.create("true"), button_Panel, org.jdesktop.beansbinding.BeanProperty.create("opaque"));
-        bindingGroup.addBinding(binding);
 
         view_Selection_Button.setText("View Selection");
 
@@ -225,8 +221,6 @@ public class View extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        bindingGroup.bind();
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -318,7 +312,6 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JPanel table_Panel;
     private javax.swing.JScrollPane table_Scroll_Panel;
     private javax.swing.JButton view_Selection_Button;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -1,18 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package source;
 
-import java.util.PriorityQueue;
+import java.util.Vector;
 import org.junit.After;
-import org.junit.AfterClass;
+import static org.junit.Assert.assertEquals;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+
 
 /**
  *
@@ -21,7 +16,7 @@ import static org.junit.Assert.*;
 public class Table_ModelTest {
     
     private static Table_Model instance = null;
-    private static Sensor[][] sensors = null;
+    private static Vector sensors = null;
     private static final int width = 4;
     private static final int height = 3;
     
@@ -41,13 +36,13 @@ public class Table_ModelTest {
     
     private static void GenerateInstance()
     {
-        sensors = new Sensor[width][height];
+        sensors = new Vector();
         
-        for (int x = 0; x < width; ++x)
+        for (int x = 0; x < width*height; ++x)
         {
             for (int y = 0; y < height; ++y)
             {
-                sensors[x][y] = new Sensor(0, 0, 0, 0, 0, 0);
+                sensors.add(new Sensor(0, 0, 0, 0, 0, 0));
             }
         }
         
@@ -84,7 +79,7 @@ public class Table_ModelTest {
         System.out.println("getValueAt");
         int rowIndex = 0;
         int columnIndex = 0;
-        Object expResult = sensors[rowIndex][columnIndex];
+        Object expResult = ((Sensor)sensors.get(rowIndex)).getColumnSensorData(columnIndex);
         Object result = instance.getValueAt(rowIndex, columnIndex);
         assertEquals(expResult, result);
     }
@@ -97,7 +92,7 @@ public class Table_ModelTest {
         System.out.println("getValueAtFromAllSensors");
         int rowIndex = 0;
         int columnIndex = 0;
-        Object expResult = sensors[rowIndex][columnIndex];
+        Object expResult = ((Sensor)sensors.get(rowIndex)).getColumnSensorData(columnIndex);
         Object result = instance.getValueAt(rowIndex, columnIndex);
         assertEquals(expResult, result);
     }

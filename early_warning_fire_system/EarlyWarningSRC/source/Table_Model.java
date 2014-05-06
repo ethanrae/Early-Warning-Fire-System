@@ -55,11 +55,10 @@ public class Table_Model extends AbstractTableModel {
 
     public void removeRow(int rowId) {
         //Having an empty table creates null problems
-        if (getRowCount() < 2) {
+        if(getRowCount() < 2)
             return;//don't do anything 
-        }
         JPanel grid_panel = view.getGrid_Panel();
-
+        
         //Fine the matching id and delete it
         if (showing_all_sensors) {
             for (int i = 0; i < all_sensors.size(); i++) {
@@ -88,7 +87,7 @@ public class Table_Model extends AbstractTableModel {
                 }
             }
         }
-
+        
         fireTableDataChanged();
     }
 
@@ -117,18 +116,19 @@ public class Table_Model extends AbstractTableModel {
     }
 
     public void setValueAtRow(Object[] data, int rowIndex) {
-        try {
-
-            for (int i = 0; i < columnNames.length; i++) {
-                if (showing_all_sensors) {
-                    ((Sensor) all_sensors.get(rowIndex)).setColumnSensorData(i, data[i]);
-                } else {
-                    ((Sensor) selected_sensors.get(rowIndex)).setColumnSensorData(i, data[i]);
-                }
+        try{
+        
+        for (int i = 0; i < columnNames.length; i++) {
+            if (showing_all_sensors) {
+                ((Sensor) all_sensors.get(rowIndex)).setColumnSensorData(i, data[i]);
+            } else {
+                ((Sensor) selected_sensors.get(rowIndex)).setColumnSensorData(i, data[i]);
             }
-
-        } catch (Exception ex) {
-
+        }
+        
+        }catch(Exception ex)
+        {
+            
         }
         fireTableDataChanged();
     }
@@ -139,7 +139,7 @@ public class Table_Model extends AbstractTableModel {
     }
 
     public Vector getSelectedRows(PriorityQueue selected_grid_cells) {
-
+        
         Object[] selected_index_array = selected_grid_cells.toArray();
         Vector selectedRows = new Vector(selected_grid_cells.size());
         for (int rowIndex = 0; rowIndex < selected_grid_cells.size(); rowIndex++) {
@@ -155,9 +155,9 @@ public class Table_Model extends AbstractTableModel {
         }
         return selectedRows;
     }
-
+    
     public Vector getSelectedRowsFromAll(PriorityQueue selected_grid_cells) {
-
+        
         Object[] selected_index_array = selected_grid_cells.toArray();
         Vector selectedRows = new Vector(selected_grid_cells.size());
         for (int rowIndex = 0; rowIndex < selected_grid_cells.size(); rowIndex++) {
@@ -169,7 +169,7 @@ public class Table_Model extends AbstractTableModel {
             double hum = (double) getValueAtFromAllSensors(index, 3);
             double light = (double) getValueAtFromAllSensors(index, 4);
             double voltage = (double) getValueAtFromAllSensors(index, 5);
-
+            
             selectedRows.add(new Sensor(time, id, temp, hum, light, voltage));
         }
         return selectedRows;

@@ -9,13 +9,11 @@ import static source.Main.view;
  * @author E
  */
 public class Edit_Sensor_Dialog extends javax.swing.JDialog {
-
     private static int edit_index;
 
     public void setEdit_index(int edit_index) {
         Edit_Sensor_Dialog.edit_index = edit_index;
     }
-
     /**
      * Creates new form Remove_Sensor_View
      */
@@ -178,7 +176,8 @@ public class Edit_Sensor_Dialog extends javax.swing.JDialog {
             double light = Double.parseDouble(light_Text.getText());
             double voltage = Double.parseDouble(voltage_Text.getText());
             Object[] newData = {time, id, temp, hum, light, voltage};
-            table_model.setValueAtRow(newData, id - 1);
+            table_model.setValueAtRow(newData, id-1);
+
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -46,8 +46,9 @@ public class Main {
             //Start TimerTask Thread for simulating a stream of data sensors
             Sensor_Update_TimerTask task = new Sensor_Update_TimerTask();
             final int seconds = 15;
-            data_stream_timer.scheduleAtFixedRate(task, 1000, seconds * 1000);
+            data_stream_timer.scheduleAtFixedRate(task, 3000, seconds * 1000);
 
+            
             //Start Thread to run GUI created with Netbeans GUI Builder
             java.awt.EventQueue.invokeLater(new Runnable() {
                 @Override

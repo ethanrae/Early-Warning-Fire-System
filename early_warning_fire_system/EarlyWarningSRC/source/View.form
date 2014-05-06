@@ -248,9 +248,6 @@
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="button_Panel">
-              <BindingProperties>
-                <BindingProperty name="opaque" source="button_Panel" sourcePath="true" target="button_Panel" targetPath="opaque" updateStrategy="0" immediately="false"/>
-              </BindingProperties>
 
               <Layout>
                 <DimensionLayout dim="0">

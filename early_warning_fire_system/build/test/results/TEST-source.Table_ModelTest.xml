@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="1" failures="0" hostname="ethanrae" name="source.Table_ModelTest" skipped="0" tests="1" time="0.237" timestamp="2014-05-06T10:23:56">
+  <properties>
+    <property name="default.javac.source" value="1.4" />
+    <property name="file.encoding.pkg" value="sun.io" />
+    <property name="javac.source" value="1.7" />
+    <property name="testng.debug.mode" value="" />
+    <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre" />
+    <property name="test.src.dir" value="test" />
+    <property name="sun.java2d.dpiaware" value="true" />
+    <property name="file.reference.joda-time-2.3.jar" value="lib/joda-time-2.3.jar" />
+    <property name="javadoc.version" value="false" />
+    <property name="sun.font.fontmanager" value="sun.font.CFontManager" />
+    <property name="java.endorsed.dirs" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/endorsed" />
+    <property name="sun.java2d.noddraw" value="true" />
+    <property name="debug-args-line" value="-Xdebug" />
+    <property name="netbeans.hash.code" value="unique=NB_JAVA_WEBCOMMON_WEBEE_GFMOD025962615-959a-4e55-abc9-4e71dee6a825_bd73b122-86e5-4db3-adbb-98211dad9a94" />
+    <property name="build.sysclasspath" value="ignore" />
+    <property name="have.sources" value="true" />
+    <property name="includes" value="**" />
+    <property name="javac.fork" value="false" />
+    <property name="source.encoding" value="UTF-8" />
+    <property name="sun.os.patch.level" value="unknown" />
+    <property name="file.reference.activation.jar" value="lib/activation.jar" />
+    <property name="java.vendor.url" value="http://java.oracle.com/" />
+    <property name="java.version" value="1.8.0_05" />
+    <property name="nb.show.statistics.ui" value="usageStatisticsEnabled" />
+    <property name="ant.file.type.early_warning_fire_system" value="file" />
+    <property name="javac.debug" value="true" />
+    <property name="org.openide.major.version" value="IDE/1" />
+    <property name="run.classpath" value="lib/activation.jar:lib/derby.jar:lib/derbyclient.jar:lib/derbynet.jar:lib/jasypt-1.9.2.jar:lib/javax.mail.jar:lib/joda-time-2.3.jar:lib/jxl-2.6.jar:${libs.beans-binding.classpath}:${libs.swing-layout.classpath}:build/classes" />
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
+    <property name="file.reference.Re_Team2-EarlyAssessmentSRC" value="/Users/ethan.rae045/Dropbox/comp350/Re_Team2/EarlyWarningSRC" />
+    <property name="netbeans.autoupdate.variant" value="" />
+    <property name="netbeans.buildnumber" value="201310111528" />
+    <property name="ant.project.invoked-targets" value="test" />
+    <property name="jna.platform.library.path" value="/usr/lib:/usr/lib" />
+    <property name="annotation.processing.run.all.processors" value="true" />
+    <property name="manifest.file" value="manifest.mf" />
+    <property name="user.name" value="E" />
+    <property name="empty.dir" value="/Users/E/Dropbox/comp350/Re_Team2/early_warning_fire_system/build/empty" />
+    <property name="sun.io.unicode.encoding" value="UnicodeBig" />
+    <property name="sun.jnu.encoding" value="UTF-8" />
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+    <property name="file.reference.javax.mail.jar" value="lib/javax.mail.jar" />
+    <property name="application.vendor" value="E" />
+    <property name="jdk.home" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home" />
+    <property name="netbeans.autoupdate.version" value="1.23" />
+    <property name="netbeans.dirs" value="/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/nb:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/ergonomics:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/ide:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/extide:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/java:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/apisupport:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/webcommon:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/websvccommon:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/enterprise:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/mobility:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/profiler:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/python:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/php:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/identity:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/harness:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/cnd:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/dlight:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/groovy:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/extra:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/javacard:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/javafx:" />
+    <property name="main.class.available" value="true" />
+    <property name="java.specification.name" value="Java Platform API Specification" />
+    <property name="sun.awt.datatransfer.timeout" value="1000" />
+    <property name="javadoc.author" value="false" />
+    <property name="ap.proc.none.internal" value="" />
+    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16" />
+    <property name="user.timezone" value="America/Los_Angeles" />
+    <property name="nb.native.filechooser" value="false" />
+    <property name="manifest.available" value="true" />
+    <property name="org.openide.specification.version" value="6.2" />
+    <property name="path.separator" value=":" />
+    <property name="testng.mode" value="testng" />
+    <property name="version-output" value="java version &quot;1.8" />
+    <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
+    <property name="file.encoding" value="UTF-8" />
+    <property name="dist.javadoc.dir" value="dist/javadoc" />
+    <property name="ant.project.default-target" value="default" />
+    <property name="javac.profile.cmd.line.arg" value="" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner source.Table_ModelTest filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/Users/E/Dropbox/comp350/Re_Team2/early_warning_fire_system/build/test/results/TEST-source.Table_ModelTest.xml crashfile=/Users/E/Dropbox/comp350/Re_Team2/early_warning_fire_system/build/junitvmwatcher879897602901871801.properties propsfile=/Users/E/Dropbox/comp350/Re_Team2/early_warning_fire_system/build/junit8149690231747271426.properties" />
+    <property name="https.nonProxyHosts" value="localhost|127.0.0.1|ethanrae" />
+    <property name="built-jar.properties" value="/Users/E/Dropbox/comp350/Re_Team2/early_warning_fire_system/build/built-jar.properties" />
+    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16" />
+    <property name="ant.junit.enabletestlistenerevents" value="true" />
+    <property name="ant.file" value="/Users/E/Dropbox/comp350/Re_Team2/early_warning_fire_system/build.xml" />
+    <property name="junit.available" value="true" />
+    <property name="netbeans.autoupdate.language" value="en" />
+    <property name="do.jar" value="true" />
+    <property name="java.io.tmpdir" value="/var/folders/qb/0tpt189560q9lhc3v1pr_bth0000gn/T/" />
+    <property name="build.test.results.dir" value="build/test/results" />
+    <property name="user.language" value="en" />
+    <property name="line.separator" value="&#xa;" />
+    <property name="apple.laf.useScreenMenuBar" value="true" />
+    <property name="javac.compilerargs" value="" />
+    <property name="ant.file.early_warning_fire_system" value="/Users/E/Dropbox/comp350/Re_Team2/early_warning_fire_system/build.xml" />
+    <property name="file.reference.derbyclient.jar" value="lib/derbyclient.jar" />
+    <property name="jar.compress" value="false" />
+    <property name="debug-transport-by-os" value="dt_socket" />
+    <property name="src.EarlyWarningSRC.dir" value="EarlyWarningSRC" />
+    <property name="java.vm.info" value="mixed mode" />
+    <property name="file.reference.Re_Team2-EarlyWarningSRC" value="../EarlyWarningSRC" />
+    <property name="javadoc.private" value="false" />
+    <property name="annotation.processing.processors.list" value="" />
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+    <property name="build.test.classes.dir" value="build/test/classes" />
+    <property name="test.binaryexcludes" value="" />
+    <property name="netbeans.dynamic.classpath" value="/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/platform/core/core.jar:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/platform/core/org-openide-filesystems.jar:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/platform/core/locale/core_ja.jar:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/platform/core/locale/core_pt_BR.jar:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/platform/core/locale/core_ru.jar:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/platform/core/locale/core_zh_CN.jar:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/platform/core/locale/org-openide-filesystems_ja.jar:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/platform/core/locale/org-openide-filesystems_pt_BR.jar:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/platform/core/locale/org-openide-filesystems_ru.jar:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/platform/core/locale/org-openide-filesystems_zh_CN.jar:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/nb/core/org-netbeans-upgrader.jar:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/nb/core/locale/core_nb.jar:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/nb/core/locale/core_nb_ja.jar:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/nb/core/locale/core_nb_pt_BR.jar:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/nb/core/locale/core_nb_ru.jar:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/nb/core/locale/core_nb_zh_CN.jar:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/nb/core/locale/org-netbeans-upgrader_ja.jar:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/nb/core/locale/org-netbeans-upgrader_pt_BR.jar:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/nb/core/locale/org-netbeans-upgrader_ru.jar:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/nb/core/locale/org-netbeans-upgrader_zh_CN.jar" />
+    <property name="ant.file.type.early_warning_fire_system-impl" value="file" />
+    <property name="platform.active" value="default_platform" />
+    <property name="ap.cmd.line.internal" value="" />
+    <property name="jdkBug6558476" value="false" />
+    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16" />
+    <property name="endorsed.classpath" value="" />
+    <property name="netbeans.autoupdate.country" value="US" />
+    <property name="javadoc.encoding" value="UTF-8" />
+    <property name="java.awt.printerjob" value="sun.lwawt.macosx.CPrinterJob" />
+    <property name="ap.processors.internal" value="" />
+    <property name="do.archive" value="true" />
+    <property name="dist.jar" value="dist/early_warning_fire_system.jar" />
+    <property name="meta.inf.dir" value="${src.dir}/META-INF" />
+    <property name="ant.version" value="Apache Ant(TM) version 1.9.1 compiled on May 15 2013" />
+    <property name="netbeans.home" value="/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/platform" />
+    <property name="javadoc.nonavbar" value="false" />
+    <property name="user.properties.file" value="/Users/adam.wardell303/Library/Application Support/NetBeans/7.4/build.properties" />
+    <property name="netbeans.importclass" value="org.netbeans.upgrade.AutoUpgrade" />
+    <property name="gopherProxySet" value="false" />
+    <property name="annotation.processing.source.output" value="build/generated-sources/ap-source-output" />
+    <property name="build.generated.dir" value="build/generated" />
+    <property name="netbeans.home+have.tests" value="true" />
+    <property name="apple.awt.graphics.UseQuartz" value="true" />
+    <property name="os.name" value="Mac OS X" />
+    <property name="java.specification.vendor" value="Oracle Corporation" />
+    <property name="run.test.classpath" value="lib/activation.jar:lib/derby.jar:lib/derbyclient.jar:lib/derbynet.jar:lib/jasypt-1.9.2.jar:lib/javax.mail.jar:lib/joda-time-2.3.jar:lib/jxl-2.6.jar:${libs.beans-binding.classpath}:${libs.swing-layout.classpath}:build/classes:${libs.junit_4.classpath}:lib/junit.jar:build/test/classes" />
+    <property name="nb.wait.for.caches" value="true" />
+    <property name="do.archive+main.class.available" value="true" />
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM" />
+    <property name="org.openide.version" value="deprecated" />
+    <property name="sun.awt.enableExtraMouseButtons" value="true" />
+    <property name="ap.supported.internal" value="true" />
+    <property name="java.library.path" value="/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/webcommon/bin::/Users/E/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:." />
+    <property name="ant.java.version" value="1.8" />
+    <property name="basedir" value="/Users/E/Dropbox/comp350/Re_Team2/early_warning_fire_system" />
+    <property name="javadoc.noindex" value="false" />
+    <property name="jna.boot.library.name" value="jnidispatch-340" />
+    <property name="java.class.version" value="52.0" />
+    <property name="javac.test.classpath" value="lib/activation.jar:lib/derby.jar:lib/derbyclient.jar:lib/derbynet.jar:lib/jasypt-1.9.2.jar:lib/javax.mail.jar:lib/joda-time-2.3.jar:lib/jxl-2.6.jar:${libs.beans-binding.classpath}:${libs.swing-layout.classpath}:build/classes:${libs.junit_4.classpath}:lib/junit.jar" />
+    <property name="javac.processorpath" value="lib/activation.jar:lib/derby.jar:lib/derbyclient.jar:lib/derbynet.jar:lib/jasypt-1.9.2.jar:lib/javax.mail.jar:lib/joda-time-2.3.jar:lib/jxl-2.6.jar:${libs.beans-binding.classpath}:${libs.swing-layout.classpath}" />
+    <property name="file.reference.jxl-2.6.jar" value="lib/jxl-2.6.jar" />
+    <property name="ant.home" value="/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/extide/ant" />
+    <property name="file.reference.jasypt-1.9.2.jar" value="lib/jasypt-1.9.2.jar" />
+    <property name="javadoc.splitindex" value="true" />
+    <property name="javac.test.processorpath" value="lib/activation.jar:lib/derby.jar:lib/derbyclient.jar:lib/derbynet.jar:lib/jasypt-1.9.2.jar:lib/javax.mail.jar:lib/joda-time-2.3.jar:lib/jxl-2.6.jar:${libs.beans-binding.classpath}:${libs.swing-layout.classpath}:build/classes:${libs.junit_4.classpath}:lib/junit.jar" />
+    <property name="javadoc.preview" value="true" />
+    <property name="copylibs.rebase" value="true" />
+    <property name="junit.forkmode" value="perTest" />
+    <property name="test.binarytestincludes" value="" />
+    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib" />
+    <property name="dist.archive.excludes" value="" />
+    <property name="build.dir" value="build" />
+    <property name="application.title" value="early_warning_fire_system" />
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers" />
+    <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment" />
+    <property name="javadoc.encoding.used" value="UTF-8" />
+    <property name="javadoc.windowtitle" value="" />
+    <property name="netbeans.productversion" value="NetBeans IDE 7.4 (Build 201310111528)" />
+    <property name="annotation.processing.enabled" value="true" />
+    <property name="run.jvmargs.ide" value="" />
+    <property name="com.apple.mrj.application.apple.menu.about.name" value="NetBeans" />
+    <property name="nb.junit.single" value="false" />
+    <property name="build.generated.sources.dir" value="build/generated-sources" />
+    <property name="run.jvmargs" value="" />
+    <property name="build.compiler.emacs" value="true" />
+    <property name="ant.project.name" value="early_warning_fire_system" />
+    <property name="java.vm.specification.version" value="1.8" />
+    <property name="work.dir" value="/Users/E/Dropbox/comp350/Re_Team2/early_warning_fire_system" />
+    <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit" />
+    <property name="javadoc.use" value="true" />
+    <property name="sun.cpu.isalist" value="" />
+    <property name="java.ext.dirs" value="/Users/E/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java" />
+    <property name="os.version" value="10.9.2" />
+    <property name="netbeans.default_userdir_root" value="/Users/E/Library/Application Support/NetBeans" />
+    <property name="excludes" value="" />
+    <property name="user.home" value="/Users/E" />
+    <property name="org.xml.sax.driver" value="com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser" />
+    <property name="java.vm.vendor" value="Oracle Corporation" />
+    <property name="user.dir" value="/Users/E/Dropbox/comp350/Re_Team2/early_warning_fire_system" />
+    <property name="debug-transport" value="dt_socket" />
+    <property name="application.args" value="" />
+    <property name="file.reference.derbynet.jar" value="lib/derbynet.jar" />
+    <property name="sun.cpu.endian" value="little" />
+    <property name="compile.on.save" value="true" />
+    <property name="ignore.failing.tests" value="true" />
+    <property name="endorsed.classpath.cmd.line.arg" value="" />
+    <property name="jar.index" value="false" />
+    <property name="ant.file.early_warning_fire_system-impl" value="/Users/E/Dropbox/comp350/Re_Team2/early_warning_fire_system/nbproject/build-impl.xml" />
+    <property name="test.binaryincludes" value="&lt;nothing&gt;" />
+    <property name="java.vm.version" value="25.5-b02" />
+    <property name="java.class.path" value="/Users/E/Dropbox/comp350/Re_Team2/early_warning_fire_system/lib/activation.jar:/Users/E/Dropbox/comp350/Re_Team2/early_warning_fire_system/lib/derby.jar:/Users/E/Dropbox/comp350/Re_Team2/early_warning_fire_system/lib/derbyclient.jar:/Users/E/Dropbox/comp350/Re_Team2/early_warning_fire_system/lib/derbynet.jar:/Users/E/Dropbox/comp350/Re_Team2/early_warning_fire_system/lib/jasypt-1.9.2.jar:/Users/E/Dropbox/comp350/Re_Team2/early_warning_fire_system/lib/javax.mail.jar:/Users/E/Dropbox/comp350/Re_Team2/early_warning_fire_system/lib/joda-time-2.3.jar:/Users/E/Dropbox/comp350/Re_Team2/early_warning_fire_system/lib/jxl-2.6.jar:/Users/E/Dropbox/comp350/Re_Team2/early_warning_fire_system/build/classes:/Users/E/Dropbox/comp350/Re_Team2/early_warning_fire_system/lib/junit.jar:/Users/E/Dropbox/comp350/Re_Team2/early_warning_fire_system/build/test/classes:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/extide/ant/lib/ant-launcher.jar:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/extide/ant/lib/ant.jar:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/extide/ant/lib/ant-junit.jar:/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/extide/ant/lib/ant-junit4.jar" />
+    <property name="annotation.processing.processor.options" value="" />
+    <property name="tests.failed" value="true" />
+    <property name="nb.internal.action.name" value="test" />
+    <property name="file.reference.derby.jar" value="lib/derby.jar" />
+    <property name="os.arch" value="x86_64" />
+    <property name="javac.deprecation" value="false" />
+    <property name="build.classes.excludes" value="**/*.java,**/*.form" />
+    <property name="dist.dir" value="dist" />
+    <property name="file.reference.junit.jar" value="lib/junit.jar" />
+    <property name="netbeans.user" value="/Users/E/Library/Application Support/NetBeans/7.4" />
+    <property name="debug.classpath" value="lib/activation.jar:lib/derby.jar:lib/derbyclient.jar:lib/derbynet.jar:lib/jasypt-1.9.2.jar:lib/javax.mail.jar:lib/joda-time-2.3.jar:lib/jxl-2.6.jar:${libs.beans-binding.classpath}:${libs.swing-layout.classpath}:build/classes" />
+    <property name="sun.java.launcher" value="SUN_STANDARD" />
+    <property name="jar.index.metainf" value="false" />
+    <property name="platform.java" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/bin/java" />
+    <property name="annotation.processing.enabled.in.editor" value="false" />
+    <property name="ant.core.lib" value="/Applications/NetBeans/NetBeans 7.4.app/Contents/Resources/NetBeans/extide/ant/lib/ant.jar" />
+    <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+    <property name="do.depend" value="false" />
+    <property name="file.separator" value="/" />
+    <property name="java.runtime.version" value="1.8.0_05-b13" />
+    <property name="sun.boot.class.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/classes" />
+    <property name="debug.test.classpath" value="lib/activation.jar:lib/derby.jar:lib/derbyclient.jar:lib/derbynet.jar:lib/jasypt-1.9.2.jar:lib/javax.mail.jar:lib/joda-time-2.3.jar:lib/jxl-2.6.jar:${libs.beans-binding.classpath}:${libs.swing-layout.classpath}:build/classes:${libs.junit_4.classpath}:lib/junit.jar:build/test/classes" />
+    <property name="nb.junit.batch" value="true" />
+    <property name="main.class" value="source.Main" />
+    <property name="have.tests" value="true" />
+    <property name="java.util.logging.config.class" value="org.netbeans.core.startup.TopLogging" />
+    <property name="user.country" value="US" />
+    <property name="javadoc.notree" value="false" />
+    <property name="default.javac.target" value="1.4" />
+    <property name="javadoc.additionalparam" value="" />
+    <property name="javac.classpath" value="lib/activation.jar:lib/derby.jar:lib/derbyclient.jar:lib/derbynet.jar:lib/jasypt-1.9.2.jar:lib/javax.mail.jar:lib/joda-time-2.3.jar:lib/jxl-2.6.jar:${libs.beans-binding.classpath}:${libs.swing-layout.classpath}" />
+    <property name="build.classes.dir" value="build/classes" />
+    <property name="do.archive+manifest.available" value="true" />
+    <property name="javac.target" value="1.7" />
+    <property name="java.vendor" value="Oracle Corporation" />
+    <property name="org.openide.awt.ActionReference.completion" value="org.netbeans.modules.apisupport.project.layers.PathCompletions" />
+    <property name="runtime.encoding" value="UTF-8" />
+    <property name="java.specification.version" value="1.8" />
+    <property name="mkdist.disabled" value="false" />
+    <property name="sun.arch.data.model" value="64" />
+  </properties>
+  <testcase classname="source.Table_ModelTest" name="initializationError" time="0.018">
+    <error message="org/hamcrest/SelfDescribing" type="java.lang.NoClassDefFoundError">java.lang.NoClassDefFoundError: org/hamcrest/SelfDescribing
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:142)
+	at java.net.URLClassLoader.defineClass(URLClassLoader.java:455)
+	at java.net.URLClassLoader.access$100(URLClassLoader.java:73)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:367)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:361)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:360)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:308)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:408)
+Caused by: java.lang.ClassNotFoundException: org.hamcrest.SelfDescribing
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:372)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:361)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:360)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:308)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+</error>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
