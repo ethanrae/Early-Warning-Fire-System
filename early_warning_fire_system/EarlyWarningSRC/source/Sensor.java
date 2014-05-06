@@ -25,6 +25,53 @@ public class Sensor {
         this.light = light;
         this.voltage = voltage;
     }
+    
+    public Object getColumnSensorData(int columnIndex)
+    {
+        Object data = new Object();
+        switch(columnIndex)
+        {
+            case 0:
+                return getTime();
+            case 1:
+                return getId();
+            case 2:
+                return getTemp();
+            case 3:
+                return getHum();
+            case 4:
+                return getLight();
+            case 5:
+                return getVoltage();
+        }
+        return data;
+    }
+    
+    public void setColumnSensorData(int columnIndex, Object data)
+    {
+        switch(columnIndex)
+        {
+            case 0:
+                setTime((double)data);
+                break;
+            case 1:
+                setId((int)data);
+                break;
+            case 2:
+                setTemp((double)data);
+                break;
+            case 3:
+                setHum((double)data);
+                break;
+            case 4:
+                setLight((double)data);
+                break;
+            case 5:
+                setVoltage((double)data);
+                break;
+        }
+
+    }
 
     public double getTime() {
         return time;

@@ -8,7 +8,7 @@ import javax.swing.JLabel;
  *
  * @author E
  */
-public class Grid_Cell extends JLabel {
+public class Grid_Cell extends JLabel implements Comparable<Grid_Cell> {
 
     private int x;
     private int y;
@@ -41,15 +41,38 @@ public class Grid_Cell extends JLabel {
     }
 
     public void setSelected() {
-        this.selected = !this.selected;
-        if (this.selected) {
-            this.setBorder(BorderFactory.createLineBorder(Color.WHITE));
-        } else {
-            this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        }
+        this.selected = true;
+        this.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+        
+        if(!Controller.getSelectedIndexs().contains(this))
+            Controller.getSelectedIndexs().add(this);
+    }
+    
+    public void setNotSelected() {
+        this.selected = false;
+        this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        
+        Controller.getSelectedIndexs().remove(this);
     }
 
     public boolean isSelected() {
         return selected;
+    }
+    
+    public int getIndex()
+    {
+        return (this.x * 32) + this.y;
+    }
+
+    @Override
+    public int compareTo(Grid_Cell o) {
+        return (this.getIndex()-o.getIndex());
+    }
+    
+    @Override
+    public String toString()
+    {
+        return "" + this.x + "," + this.y + " > " + this.getIndex() + "\t" + this.selected;
+        
     }
 }

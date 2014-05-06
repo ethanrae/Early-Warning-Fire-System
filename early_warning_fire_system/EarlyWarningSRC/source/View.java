@@ -44,6 +44,8 @@ public class View extends javax.swing.JFrame {
         close_Button.addActionListener(listener);
         refresh_Button = new javax.swing.JButton();
         refresh_Button.addActionListener(listener);
+        edit_Selected_Sensor = new javax.swing.JButton();
+        edit_Selected_Sensor.addActionListener(listener);
         right_Panel = new javax.swing.JPanel();
         grid_Panel = new javax.swing.JPanel();
         menu_Bar = new javax.swing.JMenuBar();
@@ -52,6 +54,11 @@ public class View extends javax.swing.JFrame {
         menu_Export.addActionListener(listener);
         menu_Close = new javax.swing.JMenuItem();
         menu_Close.addActionListener(listener);
+        jMenu1 = new javax.swing.JMenu();
+        edit_Sensor = new javax.swing.JMenuItem();
+        edit_Sensor.addActionListener(listener);
+        remove_Sensor_By_ID = new javax.swing.JMenuItem();
+        remove_Sensor_By_ID.addActionListener(listener);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Early Warning System");
@@ -106,17 +113,21 @@ public class View extends javax.swing.JFrame {
 
         refresh_Button.setText("Refresh");
 
+        edit_Selected_Sensor.setText("Edit Sensor");
+
         javax.swing.GroupLayout button_PanelLayout = new javax.swing.GroupLayout(button_Panel);
         button_Panel.setLayout(button_PanelLayout);
         button_PanelLayout.setHorizontalGroup(
             button_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(button_PanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(view_Selection_Button)
+                .addContainerGap()
+                .addComponent(edit_Selected_Sensor)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(view_Selection_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(refresh_Button)
+                .addComponent(refresh_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(close_Button)
+                .addComponent(close_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         button_PanelLayout.setVerticalGroup(
@@ -124,14 +135,15 @@ public class View extends javax.swing.JFrame {
             .addGroup(button_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(close_Button)
                 .addComponent(refresh_Button)
-                .addComponent(view_Selection_Button))
+                .addComponent(view_Selection_Button)
+                .addComponent(edit_Selected_Sensor))
         );
 
         javax.swing.GroupLayout table_PanelLayout = new javax.swing.GroupLayout(table_Panel);
         table_Panel.setLayout(table_PanelLayout);
         table_PanelLayout.setHorizontalGroup(
             table_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(table_Scroll_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
+            .addComponent(table_Scroll_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addComponent(button_Panel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         table_PanelLayout.setVerticalGroup(
@@ -178,6 +190,18 @@ public class View extends javax.swing.JFrame {
 
         menu_Bar.add(menu_File);
 
+        jMenu1.setText("Edit");
+
+        edit_Sensor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        edit_Sensor.setText("Edit Sensor");
+        jMenu1.add(edit_Sensor);
+
+        remove_Sensor_By_ID.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        remove_Sensor_By_ID.setText("Remove Sensor By ID");
+        jMenu1.add(remove_Sensor_By_ID);
+
+        menu_Bar.add(jMenu1);
+
         setJMenuBar(menu_Bar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -186,7 +210,7 @@ public class View extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(left_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(left_Panel, 412, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(right_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -278,13 +302,17 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JLabel avg_Temp_Text;
     private javax.swing.JPanel button_Panel;
     public static javax.swing.JButton close_Button;
+    private javax.swing.JButton edit_Selected_Sensor;
+    private javax.swing.JMenuItem edit_Sensor;
     private javax.swing.JPanel grid_Panel;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel left_Panel;
     private javax.swing.JMenuBar menu_Bar;
     public static javax.swing.JMenuItem menu_Close;
     public static javax.swing.JMenuItem menu_Export;
     private javax.swing.JMenu menu_File;
     public static javax.swing.JButton refresh_Button;
+    private javax.swing.JMenuItem remove_Sensor_By_ID;
     private javax.swing.JPanel right_Panel;
     private javax.swing.JTable sensor_Table;
     private javax.swing.JPanel table_Panel;

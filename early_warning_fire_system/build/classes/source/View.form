@@ -35,6 +35,35 @@
             </MenuItem>
           </SubComponents>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenu1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Edit"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="edit_Sensor">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Shift+Ctrl+E"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Edit Sensor"/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="edit_Sensor.addActionListener(listener);"/>
+              </AuxValues>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="remove_Sensor_By_ID">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Shift+Ctrl+R"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Remove Sensor By ID"/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="remove_Sensor_By_ID.addActionListener(listener);&#xa;"/>
+              </AuxValues>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
       </SubComponents>
     </Menu>
   </NonVisualComponents>
@@ -71,7 +100,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="left_Panel" max="-2" attributes="0"/>
+              <Component id="left_Panel" min="412" pref="412" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="right_Panel" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -177,7 +206,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="table_Scroll_Panel" pref="396" max="32767" attributes="0"/>
+                  <Component id="table_Scroll_Panel" pref="0" max="32767" attributes="0"/>
                   <Component id="button_Panel" alignment="1" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
@@ -227,12 +256,14 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="edit_Selected_Sensor" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="view_Selection_Button" min="-2" max="-2" attributes="0"/>
+                          <Component id="view_Selection_Button" min="-2" pref="118" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="refresh_Button" min="-2" max="-2" attributes="0"/>
+                          <Component id="refresh_Button" min="-2" pref="79" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="close_Button" min="-2" max="-2" attributes="0"/>
+                          <Component id="close_Button" min="-2" pref="67" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -243,6 +274,7 @@
                           <Component id="close_Button" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="refresh_Button" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="view_Selection_Button" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="edit_Selected_Sensor" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -272,6 +304,14 @@
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="refresh_Button.addActionListener(listener);"/>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JButton" name="edit_Selected_Sensor">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Edit Sensor"/>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="edit_Selected_Sensor.addActionListener(listener);&#xa;"/>
                   </AuxValues>
                 </Component>
               </SubComponents>

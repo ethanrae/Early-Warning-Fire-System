@@ -9,8 +9,10 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.sql.*;
+import java.util.Vector;
 import javax.swing.JLabel;
 import org.apache.derby.drda.NetworkServerControl;
+import static source.Main.NUM_OF_SENSORS;
 import static source.Main.view;
 
 public final class DataBase_Connector {
@@ -237,9 +239,9 @@ public final class DataBase_Connector {
         return "Data Base Connector";
     }
 
-    public Object[][] getSensors() {
+    public Vector getSensors() {
         createConnection();
-        Object[][] sensors = new Object[1024][6];
+        Vector sensors = new Vector(NUM_OF_SENSORS);
         Double total_temp_avg = 0.0;
         try {
             Statement st = con.createStatement();
@@ -251,7 +253,7 @@ public final class DataBase_Connector {
             double light;
             double voltage;
 
-            for (int i = 0; i < sensors.length && rs.next(); i++) {
+            for (int i = 0; i < NUM_OF_SENSORS && rs.next(); i++) {
                 time = rs.getDouble(1);
                 id = rs.getInt(2);
                 temp = rs.getDouble(3);
@@ -259,12 +261,7 @@ public final class DataBase_Connector {
                 hum = rs.getDouble(4);
                 light = rs.getDouble(5);
                 voltage = rs.getDouble(6);
-                sensors[i][0] = time;
-                sensors[i][1] = id;
-                sensors[i][2] = temp;
-                sensors[i][3] = hum;
-                sensors[i][4] = light;
-                sensors[i][5] = voltage;
+                sensors.add(new Sensor(time,id,temp,hum,light,voltage));
             }
             total_temp_avg = (total_temp_avg / Main.NUM_OF_SENSORS);
 

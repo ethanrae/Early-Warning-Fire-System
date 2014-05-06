@@ -14,7 +14,7 @@ public class Main {
     public static final int NUM_OF_SENSORS = 1024;
     public static final boolean start_debug = false; //true = print current database, false = run program normally
     public static final DataBase_Connector db_helper = new DataBase_Connector(); //Creating global static database helper to avoid repeated 'new' calls
-    public static final Button_Controller listener = new Button_Controller();
+    public static final Controller listener = new Controller();
 
     /*
      The main program of the early warning fire system
@@ -44,9 +44,10 @@ public class Main {
 
             //Start TimerTask Thread for simulating a stream of data sensors
             Timer data_stream_timer = new Timer();
-            final int seconds = 30;
-            data_stream_timer.scheduleAtFixedRate(new Sensor_Update_TimerTask(), 3000, seconds * 1000);
-
+            Sensor_Update_TimerTask task = new Sensor_Update_TimerTask();
+            final int seconds = 15;
+            data_stream_timer.scheduleAtFixedRate(task, 3000, seconds * 1000);
+            
             //Start Thread to run GUI created with Netbeans GUI Builder
             java.awt.EventQueue.invokeLater(new Runnable() {
                 @Override

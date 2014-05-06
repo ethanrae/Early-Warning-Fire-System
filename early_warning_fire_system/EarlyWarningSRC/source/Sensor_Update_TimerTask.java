@@ -46,9 +46,6 @@ public class Sensor_Update_TimerTask extends TimerTask {
 
         updateGridCellColors();
 
-        //notify the table to update its view
-        table_model.fireTableDataChanged();
-
     }
 
     private void updateGridCellColors() {
@@ -58,7 +55,6 @@ public class Sensor_Update_TimerTask extends TimerTask {
                 JPanel right_Panel = view.getRight_Panel();
                 double total_temp_avg = view.getTotal_temp_avg();
                 Table_Model table_model = view.getTable_model();
-                Mouse_Controller mc = new Mouse_Controller();
 
                 double sensor_temp_at_index;
                 final double avg_plus_ten_perc = (total_temp_avg + (total_temp_avg * 0.10));
@@ -80,13 +76,15 @@ public class Sensor_Update_TimerTask extends TimerTask {
                         newGrid.add(cell);
                     }
                 }
+                view.getGrid_Panel().removeMouseListener(Main.listener);
                 right_Panel.removeAll();
                 view.setGrid_Panel(newGrid);
-                view.getGrid_Panel().addMouseListener(mc);
+                view.getGrid_Panel().addMouseListener(Main.listener);
                 right_Panel.add(view.getGrid_Panel());
                 right_Panel.revalidate();
                 right_Panel.repaint();
-
+                //notify the table to update its view
+                table_model.fireTableDataChanged();
             } catch (Exception ex) {
             }
         }
