@@ -261,7 +261,7 @@ public final class DataBase_Connector {
                 hum = rs.getDouble(4);
                 light = rs.getDouble(5);
                 voltage = rs.getDouble(6);
-                sensors.add(new Sensor(time,id,temp,hum,light,voltage));
+                sensors.add(new Sensor(time, id, temp, hum, light, voltage));
             }
             total_temp_avg = (total_temp_avg / Main.NUM_OF_SENSORS);
 

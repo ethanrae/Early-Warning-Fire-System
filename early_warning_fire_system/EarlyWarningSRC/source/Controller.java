@@ -23,7 +23,7 @@ public class Controller implements ActionListener, MouseListener {
     private final static PriorityQueue<Grid_Cell> selectedCells = new PriorityQueue<Grid_Cell>();
 
     public Controller() {
-       
+
     }
 
     public static PriorityQueue<Grid_Cell> getSelectedIndexs() {
@@ -55,35 +55,24 @@ public class Controller implements ActionListener, MouseListener {
     public void mouseEntered(MouseEvent e) {
 
     }
-    
+
     @Override
     public void mouseExited(MouseEvent e) {
 
     }
 
-    public void setSelectedGridBoarders() {
-
-        if (selectedCells != null && !selectedCells.isEmpty()) {
-            Object[] selected_cells_array = selectedCells.toArray();
-
-            for (int i = 0; i < selected_cells_array.length; i++) {
-                ((Grid_Cell)selected_cells_array[i]).setSelected();
-            }
-        }
-    }
-
     private void resetSelectionQueue() {
         Object[] selected_cells_array = selectedCells.toArray();
         for (int i = 0; i < selected_cells_array.length; i++) {
-            ((Grid_Cell)selected_cells_array[i]).setNotSelected();
+            ((Grid_Cell) selected_cells_array[i]).setNotSelected();
         }
         selectedCells.clear();
     }
 
     private void removeExcludedFromSelection(Object[] oldSelected) {
         for (int i = 0; i < oldSelected.length; i++) {
-            if (!selectedCells.contains((Grid_Cell)oldSelected[i])) {
-                ((Grid_Cell)oldSelected[i]).setNotSelected();
+            if (!selectedCells.contains((Grid_Cell) oldSelected[i])) {
+                ((Grid_Cell) oldSelected[i]).setNotSelected();
             }
         }
     }
@@ -131,7 +120,7 @@ public class Controller implements ActionListener, MouseListener {
         for (int l = x; l <= xMax; l++) {
             for (int s = y; s <= yMax; s++) {
                 int index = (l * 32) + s;
-                
+
                 cell = (Grid_Cell) grid_panel.getComponent(index);
 
                 if (!selectedCells.contains(cell)) {
@@ -166,49 +155,46 @@ public class Controller implements ActionListener, MouseListener {
             Table_Model table_model = view.getTable_model();
             JPanel grid_panel = view.getGrid_Panel();
             Grid_Cell cell;
-            
+
             //get selected rows, might be sorted
             int[] selected_row_indexs = sensor_Table.getSelectedRows();
-            
+
             //convert indexes from how the look now, sorted or not, to the original model indexs
-            for(int i = 0; i < selected_row_indexs.length; i++)
-            {
+            for (int i = 0; i < selected_row_indexs.length; i++) {
                 int index = sensor_Table.convertRowIndexToModel(selected_row_indexs[i]);
-                int selected_id = (int)table_model.getValueAt(index, 1);
+                int selected_id = (int) table_model.getValueAt(index, 1);
                 //int indexToView;
                 selected_row_indexs[i] = selected_id - 1;
                 //indexToView = sensor_Table.convertRowIndexToView(index);
                 //System.out.println("\nIndex: " + index + " > Model: " + selected_row_indexs[i]);
                 //System.out.println("Index: " + index + " > View: " + indexToView + "\n");
             }
-            
+
             //copy old selectedCells before we 
             Object[] oldSelectedCells = selectedCells.toArray();
-            
+
             //clear selected cells, we have old copy
             selectedCells.clear();
-            
+
             //Add each new selected cell to selected
             if (selected_row_indexs.length > 0) {
-                for (int i = 0; i < selected_row_indexs.length; i++) 
-                {
+                for (int i = 0; i < selected_row_indexs.length; i++) {
                     cell = (Grid_Cell) grid_panel.getComponent(selected_row_indexs[i]);
                     cell.setSelected();
                 }
-                
+
                 //Unselected each cell that wasn't in new selection
                 removeExcludedFromSelection(oldSelectedCells);
-                
+
                 //Set the view selected_sensors using our selectedCells
                 table_model.selected_sensors = table_model.getSelectedRowsFromAll(selectedCells);
-                
+
                 //Tell our table model its going to be showing the selected sensors
                 Table_Model.showing_all_sensors = false;
-                
+
                 //setSelectedGridBoarders(); 
                 //Not needed since borders are 
                 //set when added or removed from selectedCells
-                
                 table_model.fireTableDataChanged();
             }
         } else if (e.getActionCommand().equalsIgnoreCase("Refresh")) //could be else
@@ -240,11 +226,10 @@ public class Controller implements ActionListener, MouseListener {
                     dialog.getLight_Text().setText(table_model.getValueAt(selected_row_index, 4).toString());
                     dialog.getVoltage_Text().setText(table_model.getValueAt(selected_row_index, 5).toString());
                     dialog.setEdit_index(selected_row_index);
+                } else {
+                    dialog.setEdit_index(-1);
                 }
             }
-            dialog.setVisible(true);
-        } else if (e.getActionCommand().equalsIgnoreCase("Remove Sensor")) {
-            Remove_Selected_Sensor_Dialog dialog = new Remove_Selected_Sensor_Dialog(view, true);
             dialog.setVisible(true);
         } else if (e.getActionCommand().equalsIgnoreCase("Remove Sensor By ID")) {
             Remove_Sensor_Dialog dialog = new Remove_Sensor_Dialog(view, true);

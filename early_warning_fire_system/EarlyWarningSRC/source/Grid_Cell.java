@@ -43,36 +43,35 @@ public class Grid_Cell extends JLabel implements Comparable<Grid_Cell> {
     public void setSelected() {
         this.selected = true;
         this.setBorder(BorderFactory.createLineBorder(Color.WHITE));
-        
-        if(!Controller.getSelectedIndexs().contains(this))
+
+        if (!Controller.getSelectedIndexs().contains(this)) {
             Controller.getSelectedIndexs().add(this);
+        }
     }
-    
+
     public void setNotSelected() {
         this.selected = false;
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        
+
         Controller.getSelectedIndexs().remove(this);
     }
 
     public boolean isSelected() {
         return selected;
     }
-    
-    public int getIndex()
-    {
+
+    public int getIndex() {
         return (this.x * 32) + this.y;
     }
 
     @Override
     public int compareTo(Grid_Cell o) {
-        return (this.getIndex()-o.getIndex());
+        return (this.getIndex() - o.getIndex());
     }
-    
+
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "" + this.x + "," + this.y + " > " + this.getIndex() + "\t" + this.selected;
-        
+
     }
 }

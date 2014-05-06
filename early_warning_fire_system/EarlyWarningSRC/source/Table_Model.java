@@ -3,7 +3,6 @@ package source;
 import java.util.PriorityQueue;
 import java.util.Vector;
 import javax.swing.JPanel;
-import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 import static source.Main.view;
 
@@ -55,7 +54,13 @@ public class Table_Model extends AbstractTableModel {
     }
 
     public void removeRow(int rowId) {
+        //Having an empty table creates null problems
+        if (getRowCount() < 2) {
+            return;//don't do anything 
+        }
         JPanel grid_panel = view.getGrid_Panel();
+
+        //Fine the matching id and delete it
         if (showing_all_sensors) {
             for (int i = 0; i < all_sensors.size(); i++) {
                 try {
@@ -83,6 +88,7 @@ public class Table_Model extends AbstractTableModel {
                 }
             }
         }
+
         fireTableDataChanged();
     }
 
@@ -111,12 +117,18 @@ public class Table_Model extends AbstractTableModel {
     }
 
     public void setValueAtRow(Object[] data, int rowIndex) {
-        for (int i = 0; i < columnNames.length; i++) {
-            if (showing_all_sensors) {
-                ((Sensor) all_sensors.get(rowIndex)).setColumnSensorData(i, data[i]);
-            } else {
-                ((Sensor) selected_sensors.get(rowIndex)).setColumnSensorData(i, data[i]);
+        try {
+
+            for (int i = 0; i < columnNames.length; i++) {
+                if (showing_all_sensors) {
+                    ((Sensor) all_sensors.get(rowIndex)).setColumnSensorData(i, data[i]);
+                } else {
+                    ((Sensor) selected_sensors.get(rowIndex)).setColumnSensorData(i, data[i]);
+                }
             }
+
+        } catch (Exception ex) {
+
         }
         fireTableDataChanged();
     }
@@ -126,23 +138,8 @@ public class Table_Model extends AbstractTableModel {
         return columnNames[columnIndex];
     }
 
-    public int[] getSelectedRowsFromSelected(int[] selected_from_selected) {
-        int selectedToModel[] = new int[selected_from_selected.length];
-        JTable sensor_table = view.getSensor_Table();
-        for (int i = 0; i < selected_from_selected.length; i++) {
-            int index = sensor_table.convertRowIndexToModel(selected_from_selected[i]);
-            selectedToModel[i] = index;
-        }
-        return selectedToModel;
-    }
-
-    public int getRowPoint(int rowIndex) {
-        System.out.println("Row Point: " + rowIndex);
-        int id = (int) getValueAtFromAllSensors(rowIndex, 1);
-        return id - 1;
-    }
-
     public Vector getSelectedRows(PriorityQueue selected_grid_cells) {
+
         Object[] selected_index_array = selected_grid_cells.toArray();
         Vector selectedRows = new Vector(selected_grid_cells.size());
         for (int rowIndex = 0; rowIndex < selected_grid_cells.size(); rowIndex++) {
@@ -158,8 +155,9 @@ public class Table_Model extends AbstractTableModel {
         }
         return selectedRows;
     }
-    
+
     public Vector getSelectedRowsFromAll(PriorityQueue selected_grid_cells) {
+
         Object[] selected_index_array = selected_grid_cells.toArray();
         Vector selectedRows = new Vector(selected_grid_cells.size());
         for (int rowIndex = 0; rowIndex < selected_grid_cells.size(); rowIndex++) {
@@ -171,6 +169,7 @@ public class Table_Model extends AbstractTableModel {
             double hum = (double) getValueAtFromAllSensors(index, 3);
             double light = (double) getValueAtFromAllSensors(index, 4);
             double voltage = (double) getValueAtFromAllSensors(index, 5);
+
             selectedRows.add(new Sensor(time, id, temp, hum, light, voltage));
         }
         return selectedRows;
