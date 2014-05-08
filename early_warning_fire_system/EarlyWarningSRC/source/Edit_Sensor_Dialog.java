@@ -2,7 +2,7 @@ package source;
 
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import static source.Main.view;
+import static source.Main.main_view;
 
 /**
  *
@@ -167,8 +167,8 @@ public class Edit_Sensor_Dialog extends javax.swing.JDialog {
 
     private void ok_Edit_Sensor_ButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ok_Edit_Sensor_ButActionPerformed
         try {
-            Table_Model table_model = view.getTable_model();
-            JTable sensor_table = view.getSensor_Table();
+            Table_Model table_model = main_view.getTable_model();
+            JTable sensor_table = main_view.getSensor_Table();
             double time = (double) table_model.getValueAt(1, 0);
             int id = Integer.parseInt(id_Text.getText());
             double temp = Double.parseDouble(temp_Text.getText());
@@ -177,8 +177,6 @@ public class Edit_Sensor_Dialog extends javax.swing.JDialog {
             double voltage = Double.parseDouble(voltage_Text.getText());
             Object[] newData = {time, id, temp, hum, light, voltage};
             table_model.setValueAtRow(newData, id-1);
-
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

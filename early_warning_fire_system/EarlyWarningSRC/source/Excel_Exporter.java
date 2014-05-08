@@ -5,7 +5,7 @@ import jxl.*;
 import jxl.write.Label;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
-import static source.Main.view;
+import static source.Main.main_view;
 
 /**
  *
@@ -14,8 +14,8 @@ import static source.Main.view;
 public class Excel_Exporter {
 
     public void fillData(File file) {
-        Table_Model table_model = view.getTable_model();
-        double total_temp_avg = view.getTotal_temp_avg();
+        Table_Model table_model = main_view.getTable_model();
+        double total_temp_avg = main_view.getTotal_temp_avg();
         try {
 
             WritableWorkbook workbook1 = Workbook.createWorkbook(file);

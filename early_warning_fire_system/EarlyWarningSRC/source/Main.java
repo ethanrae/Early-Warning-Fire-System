@@ -9,10 +9,10 @@ import java.util.Timer;
  */
 public class Main {
 
-    public static View view;
+    public static View main_view;
     public static final int TABLE_SIZE = 32;
     public static int NUM_OF_SENSORS = 1024;
-    public static final boolean start_debug = false; //true = print current database, false = run program normally
+    public static final boolean START_DEBUG = false; //true = print current database, false = run program normally
     public static final DataBase_Connector db_helper = new DataBase_Connector(); //Creating global static database helper to avoid repeated 'new' calls
     public static final Controller listener = new Controller();
     public static final Timer data_stream_timer = new Timer();
@@ -23,15 +23,15 @@ public class Main {
     public static void main(String[] args) {
 
         //Start database server programmatically
-        db_helper.startDataBaseServer();
+        db_helper.startDBServer();
 
         waitForServerToStart();
 
-        if (start_debug == true) //Print current data base
+        if (START_DEBUG == true) //Print current data base
         {
             System.out.println("Debug Started");
-            db_helper.viewData();
-            db_helper.shutdownDataBaseServer();
+            db_helper.printDebugDB();
+            db_helper.shutdownDBServer();
             System.out.println("Debug Finished");
         } else //Start program normally
         {
@@ -44,8 +44,8 @@ public class Main {
             }
 
             //Start TimerTask Thread for simulating a stream of data sensors
-            Sensor_Update_TimerTask task = new Sensor_Update_TimerTask();
-            final int seconds = 15;
+            Update_Sensors_TimerTask task = new Update_Sensors_TimerTask();
+            final int seconds = 30;
             data_stream_timer.scheduleAtFixedRate(task, 3000, seconds * 1000);
 
             
@@ -53,15 +53,15 @@ public class Main {
             java.awt.EventQueue.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    view = new View();
-                    view.setVisible(true);
+                    main_view = new View();
+                    main_view.setVisible(true);
                 }
             });
         }
     }
 
     private static void waitForServerToStart() {
-        while (!db_helper.hostAvailabilityCheck()) {
+        while (!db_helper.isServerRunning()) {
             System.out.println("Server Not Started");
             try {
                 sleep(1000);

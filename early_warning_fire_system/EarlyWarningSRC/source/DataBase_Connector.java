@@ -9,11 +9,12 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.sql.*;
+import java.text.DecimalFormat;
 import java.util.Vector;
 import javax.swing.JLabel;
 import org.apache.derby.drda.NetworkServerControl;
 import static source.Main.NUM_OF_SENSORS;
-import static source.Main.view;
+import static source.Main.main_view;
 
 public final class DataBase_Connector {
 
@@ -24,7 +25,7 @@ public final class DataBase_Connector {
     private NetworkServerControl server;
 
     //Connection associated with this DataBase_Connector
-    private Connection con;
+    private Connection conn;
 
     public DataBase_Connector() {
 
@@ -34,7 +35,7 @@ public final class DataBase_Connector {
     public void deleteTable() {
         Statement sta;
         try {
-            sta = con.createStatement();
+            sta = conn.createStatement();
 
             //Deletes the table
             int wasTableDeleted = sta.executeUpdate("DROP TABLE SENSORS");
@@ -54,7 +55,7 @@ public final class DataBase_Connector {
         //delete table if one already exists
         //deleteTable();
         try {
-            try (Statement sta = con.createStatement()) {
+            try (Statement sta = conn.createStatement()) {
                 int wasTableCreated = sta.executeUpdate("CREATE TABLE SENSORS(\"TIME\" DOUBLE,\"SENSORID\" INTEGER not null primary key,\"TEMP\" DOUBLE,\"HUM\" DOUBLE,\"LIGHT\" DOUBLE,\"VOLTAGE\" DOUBLE)");
 
                 if (wasTableCreated >= 0) {
@@ -77,7 +78,7 @@ public final class DataBase_Connector {
             String dPass = "student";
             String host = "jdbc:derby://localhost:1527/SensorDB;create=true";
 
-            con = DriverManager.getConnection(host, dName, dPass);
+            conn = DriverManager.getConnection(host, dName, dPass);
 
         } catch (SQLException e) {
             //e.printStackTrace();
@@ -91,17 +92,17 @@ public final class DataBase_Connector {
 
     private void closeConnection() {
         try {
-            con.close();
+            conn.close();
         } catch (Exception e) {
             //e.printStackTrace();
         }
     }
 
-    public void viewData() {
+    public void printDebugDB() {
         createConnection();
 
         try {
-            Statement st = con.createStatement();
+            Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("select * from STUDENT.SENSORS");
 
             StringBuffer sb = new StringBuffer("");
@@ -123,30 +124,12 @@ public final class DataBase_Connector {
         }
     }
 
-    //Might use this code later for cell queries
-    /*
-     public long getMileage(int key) {
-     createConnection();
-     long mileage = 0;
-     try {
-     Statement st = con.createStatement();
-     ResultSet rs = st.executeQuery("SELECT \"MILEAGE\" FROM STUDENT.CUSTOMERS_TABLE where ID=" + key);
-
-     while (rs.next()) {
-     mileage = rs.getLong("MILEAGE");
-     }
-
-     } catch (SQLException e) {
-     //e.printStackTrace();
-     }
-     return mileage;
-     }*/
     public void updateDatabase(String table_name, String file_name) {
         createConnection();
         createTable();
 
         try {
-            PreparedStatement ps = con.prepareStatement("CALL SYSCS_UTIL.SYSCS_IMPORT_TABLE "
+            PreparedStatement ps = conn.prepareStatement("CALL SYSCS_UTIL.SYSCS_IMPORT_TABLE "
                     + "(null, '" + table_name + "', '" + file_name + "', null, null, null,1)");
 
             int result = ps.executeUpdate();
@@ -172,7 +155,7 @@ public final class DataBase_Connector {
         double voltage = S.getVoltage();
         createConnection();
         try {
-            PreparedStatement ps = con.prepareStatement("insert into STUDENT.SENSORS values(?,?,?,?,?,?)");
+            PreparedStatement ps = conn.prepareStatement("insert at STUDENT.SENSORS values(?,?,?,?,?,?)");
             ps.setDouble(1, time);
             ps.setInt(2, id);
             ps.setDouble(3, temp);
@@ -183,12 +166,13 @@ public final class DataBase_Connector {
             int result = ps.executeUpdate();
 
             if (result > 0) {
+                System.out.println("Updated/Added Id: " + id + " in database");
                 System.out.println("Data Inserted");
             } else {
                 System.out.println("Something Happend");
             }
         } catch (SQLException e) {
-            //Trying to add an id that already exists
+            e.printStackTrace();
         } finally {
             closeConnection();
         }
@@ -197,7 +181,7 @@ public final class DataBase_Connector {
     /**
      * Starts the data base server
      */
-    public void startDataBaseServer() {
+    public void startDBServer() {
         try {
             System.setProperty("derby.drda.startNetworkServer", "true");
             // start derby in port 1527
@@ -216,7 +200,7 @@ public final class DataBase_Connector {
     /**
      * Shuts Down the data base server
      */
-    public void shutdownDataBaseServer() {
+    public void shutdownDBServer() {
         try {
             server.shutdown();
         } catch (Exception ex) {
@@ -225,7 +209,7 @@ public final class DataBase_Connector {
         }
     }
 
-    public boolean hostAvailabilityCheck() {
+    public boolean isServerRunning() {
         try (Socket s = new Socket("localhost", 1527)) {
             return true;
         } catch (IOException ex) {
@@ -239,12 +223,15 @@ public final class DataBase_Connector {
         return "Data Base Connector";
     }
 
-    public Vector getSensors() {
+    public Vector getSensorFromDB() {
         createConnection();
         Vector sensors = new Vector(NUM_OF_SENSORS);
         Double total_temp_avg = 0.0;
+        Double total_lum_avg = 0.0;
+        Double total_hum_avg = 0.0;
+        int num_with_low_voltage = 0;
         try {
-            Statement st = con.createStatement();
+            Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("select * from STUDENT.SENSORS");
             double time;
             int id;
@@ -257,31 +244,45 @@ public final class DataBase_Connector {
                 time = rs.getDouble(1);
                 id = rs.getInt(2);
                 temp = rs.getDouble(3);
-                total_temp_avg += temp;
                 hum = rs.getDouble(4);
                 light = rs.getDouble(5);
                 voltage = rs.getDouble(6);
+                
+                //Fault Tolerance
+                if(voltage >= Update_Sensors_TimerTask.MIN_SENSOR_VOLTAGE)
+                {
+                    total_temp_avg += temp;
+                    total_lum_avg += light;
+                    total_hum_avg += hum;
+                }
+                else
+                {
+                    num_with_low_voltage++;
+                }
                 sensors.add(new Sensor(time,id,temp,hum,light,voltage));
             }
-            total_temp_avg = (total_temp_avg / Main.NUM_OF_SENSORS);
+            total_temp_avg = (total_temp_avg / Main.NUM_OF_SENSORS - num_with_low_voltage);
 
-            if (view != null) {
-                JLabel avg_Temp_Img = view.getAvg_Temp_Img();
-                JLabel avg_Temp_Text = view.getAvg_Temp_Text();
+            if (main_view != null) {
+                JLabel avg_Temp_Img = main_view.getAvg_Temp_Img();
+                JLabel avg_Temp_Text = main_view.getAvg_Temp_Text();
                 if (total_temp_avg <= 20) {
                     avg_Temp_Img.setBackground(Color.green);
                 } else if (total_temp_avg <= 30) {
                     avg_Temp_Img.setBackground(Color.yellow);
-                } else if (total_temp_avg <= 40) {
+                } else if (total_temp_avg <= 50) {
                     avg_Temp_Img.setBackground(Color.orange);
                 } else {
                     avg_Temp_Img.setBackground(Color.red);
                 }
-                Table_Model table_model = view.getTable_model();
-                if (Table_Model.showing_all_sensors) {
-                    avg_Temp_Text.setText("\tAverage Temperature: " + total_temp_avg);
+                Table_Model table_model = main_view.getTable_model();
+                if (Table_Model.showing_all) {
+                    DecimalFormat df = new DecimalFormat("#.##");
+                    avg_Temp_Text.setText("\tAverage Temperature: " + df.format(total_temp_avg) + "°C");
                 }
-                view.setTotal_temp_avg(total_temp_avg);
+                main_view.setTotal_temp_avg(total_temp_avg);
+                main_view.setTotal_hum_avg(total_hum_avg);
+                main_view.setTotal_lum_avg(total_lum_avg);
             }
             //System.out.println("Total Avg Temp: " + Main.total_temp_avg);
         } catch (SQLException e) {

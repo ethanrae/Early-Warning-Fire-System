@@ -16,7 +16,7 @@ public class View extends javax.swing.JFrame {
      * Creates new form NewView
      */
     public View() {
-        table_model = new Table_Model(db_helper.getSensors());
+        table_model = new Table_Model(db_helper.getSensorFromDB());
         initComponents();
     }
 
@@ -287,9 +287,26 @@ public class View extends javax.swing.JFrame {
     public void setGrid_Panel(JPanel grid_Panel) {
         this.grid_Panel = grid_Panel;
     }
+    
+    public double getTotal_lum_avg() {
+        return total_lum_avg;
+    }
 
+    public void setTotal_lum_avg(double total_lum_avg) {
+        this.total_lum_avg = total_lum_avg;
+    }
+
+    public double getTotal_hum_avg() {
+        return total_hum_avg;
+    }
+
+    public void setTotal_hum_avg(double total_hum_avg) {
+        this.total_hum_avg = total_hum_avg;
+    }
     private Table_Model table_model;
     private double total_temp_avg = 0.0;
+    private double total_lum_avg = 0.0;
+    private double total_hum_avg = 0.0;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel alert_Level_Panel;
     private javax.swing.JLabel avg_Temp_Img;

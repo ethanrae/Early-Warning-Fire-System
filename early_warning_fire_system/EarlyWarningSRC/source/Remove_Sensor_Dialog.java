@@ -1,7 +1,7 @@
 package source;
 
 import static source.Main.NUM_OF_SENSORS;
-import static source.Main.view;
+import static source.Main.main_view;
 
 /**
  *
@@ -120,7 +120,7 @@ public class Remove_Sensor_Dialog extends javax.swing.JDialog {
                 String[] parsedInput = input.split(delims);
 
                 for (String string : parsedInput) {
-                    Table_Model table_model = view.getTable_model();
+                    Table_Model table_model = main_view.getTable_model();
                     if(string.matches("\\d+"))//single digit
                     {
                         int rowId = Integer.parseInt(string);

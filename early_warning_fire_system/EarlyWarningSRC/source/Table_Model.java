@@ -4,7 +4,9 @@ import java.util.PriorityQueue;
 import java.util.Vector;
 import javax.swing.JPanel;
 import javax.swing.table.AbstractTableModel;
-import static source.Main.view;
+import static source.Main.NUM_OF_SENSORS;
+import static source.Main.db_helper;
+import static source.Main.main_view;
 
 /**
  *
@@ -12,15 +14,15 @@ import static source.Main.view;
  */
 public class Table_Model extends AbstractTableModel {
 
-    private final String columnNames[] = {"Time", "Sensor ID", "Temp", "Humidity", "Light", "Voltage"};
+    private final String[] column_names = {"Time", "Sensor ID", "Temp", "Humidity", "Light", "Voltage"};
     public Vector all_sensors;
     public Vector selected_sensors;
-    public static boolean showing_all_sensors;
+    public static boolean showing_all;
 
     public Table_Model(Vector sensors) {
         this.all_sensors = sensors;
         this.selected_sensors = null;
-        showing_all_sensors = true;
+        showing_all = true;
     }
 
     @Override
@@ -28,7 +30,7 @@ public class Table_Model extends AbstractTableModel {
         if (all_sensors == null) {
             return 0;
         }
-        if (showing_all_sensors) {
+        if (showing_all) {
             return all_sensors.size();
         } else {
             return selected_sensors.size();
@@ -37,12 +39,12 @@ public class Table_Model extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return columnNames.length;
+        return column_names.length;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        if (showing_all_sensors) {
+        if (showing_all) {
             return ((Object) ((Sensor) all_sensors.get(rowIndex)).getColumnSensorData(columnIndex));
         } else {
             return ((Object) ((Sensor) selected_sensors.get(rowIndex)).getColumnSensorData(columnIndex));
@@ -55,12 +57,13 @@ public class Table_Model extends AbstractTableModel {
 
     public void removeRow(int rowId) {
         //Having an empty table creates null problems
-        if(getRowCount() < 2)
+        if (getRowCount() < 2) {
             return;//don't do anything 
-        JPanel grid_panel = view.getGrid_Panel();
-        
+        }
+        JPanel grid_panel = main_view.getGrid_Panel();
+
         //Fine the matching id and delete it
-        if (showing_all_sensors) {
+        if (showing_all) {
             for (int i = 0; i < all_sensors.size(); i++) {
                 try {
                     if (((Sensor) all_sensors.get(i)).getId() == rowId) {
@@ -87,7 +90,7 @@ public class Table_Model extends AbstractTableModel {
                 }
             }
         }
-        
+
         fireTableDataChanged();
     }
 
@@ -107,7 +110,7 @@ public class Table_Model extends AbstractTableModel {
 
     @Override
     public void setValueAt(Object value, int rowIndex, int columnIndex) {
-        if (showing_all_sensors) {
+        if (showing_all) {
             ((Sensor) all_sensors.get(rowIndex)).setColumnSensorData(columnIndex, value);
         } else {
             ((Sensor) selected_sensors.get(rowIndex)).setColumnSensorData(columnIndex, value);
@@ -116,30 +119,42 @@ public class Table_Model extends AbstractTableModel {
     }
 
     public void setValueAtRow(Object[] data, int rowIndex) {
-        try{
-        
-        for (int i = 0; i < columnNames.length; i++) {
-            if (showing_all_sensors) {
-                ((Sensor) all_sensors.get(rowIndex)).setColumnSensorData(i, data[i]);
+        try {
+            if (rowIndex >= 0 && rowIndex < NUM_OF_SENSORS) {
+                for (int i = 0; i < column_names.length; i++) {
+                    if (showing_all) {
+                        ((Sensor) all_sensors.get(rowIndex)).setColumnSensorData(i, data[i]);
+                        db_helper.insertData(((Sensor) all_sensors.get(rowIndex)));
+                    } else {
+                        ((Sensor) selected_sensors.get(rowIndex)).setColumnSensorData(i, data[i]);
+                        db_helper.insertData(((Sensor) selected_sensors.get(rowIndex)));
+                    }
+                }
+
             } else {
-                ((Sensor) selected_sensors.get(rowIndex)).setColumnSensorData(i, data[i]);
+                Sensor newSensor = new Sensor((double) data[0], (int) data[1], (double) data[2], (double) data[3], (double) data[4], (double) data[5]);
+                if (showing_all) {
+                    all_sensors.add(rowIndex, newSensor);
+                } else {
+                    selected_sensors.add(rowIndex, newSensor);
+                }
+                db_helper.insertData(newSensor);
+                this.fireTableDataChanged();
             }
-        }
-        
-        }catch(Exception ex)
-        {
-            
+            Update_Sensors_TimerTask.updateGridCellColors();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
         fireTableDataChanged();
     }
 
     @Override
     public String getColumnName(int columnIndex) {
-        return columnNames[columnIndex];
+        return column_names[columnIndex];
     }
 
     public Vector getSelectedRows(PriorityQueue selected_grid_cells) {
-        
+
         Object[] selected_index_array = selected_grid_cells.toArray();
         Vector selectedRows = new Vector(selected_grid_cells.size());
         for (int rowIndex = 0; rowIndex < selected_grid_cells.size(); rowIndex++) {
@@ -155,9 +170,9 @@ public class Table_Model extends AbstractTableModel {
         }
         return selectedRows;
     }
-    
+
     public Vector getSelectedRowsFromAll(PriorityQueue selected_grid_cells) {
-        
+
         Object[] selected_index_array = selected_grid_cells.toArray();
         Vector selectedRows = new Vector(selected_grid_cells.size());
         for (int rowIndex = 0; rowIndex < selected_grid_cells.size(); rowIndex++) {
@@ -169,7 +184,7 @@ public class Table_Model extends AbstractTableModel {
             double hum = (double) getValueAtFromAllSensors(index, 3);
             double light = (double) getValueAtFromAllSensors(index, 4);
             double voltage = (double) getValueAtFromAllSensors(index, 5);
-            
+
             selectedRows.add(new Sensor(time, id, temp, hum, light, voltage));
         }
         return selectedRows;

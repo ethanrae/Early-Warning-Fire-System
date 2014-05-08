@@ -38,8 +38,8 @@ public class DataBase_ConnectorTest {
     private static void GenerateInstance()
     {
         instance = new DataBase_Connector();
-        instance.startDataBaseServer();
-        while (!db_helper.hostAvailabilityCheck()) {
+        instance.startDBServer();
+        while (!db_helper.isServerRunning()) {
             System.out.println("Server Not Started");
             try {
                 sleep(1000);
@@ -52,7 +52,7 @@ public class DataBase_ConnectorTest {
     
     private static void ShutdownInstance()
     {
-        instance.shutdownDataBaseServer();
+        instance.shutdownDBServer();
         instance = null;
     }
 
@@ -81,13 +81,13 @@ public class DataBase_ConnectorTest {
     }
 
     /**
-     * Test of viewData method, of class DataBase_Connector.
+     * Test of printDebugDB method, of class DataBase_Connector.
      */
     @Test
     public void testViewData() {
         System.out.println("viewData");
         DataBase_Connector instance = new DataBase_Connector();
-        instance.viewData();
+        instance.printDebugDB();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -120,38 +120,38 @@ public class DataBase_ConnectorTest {
     }
 
     /**
-     * Test of startDataBaseServer method, of class DataBase_Connector.
+     * Test of startDBServer method, of class DataBase_Connector.
      */
     @Test
     public void testStartDataBaseServer() {
         System.out.println("startDataBaseServer");
         DataBase_Connector instance = new DataBase_Connector();
-        instance.startDataBaseServer();
+        instance.startDBServer();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of shutdownDataBaseServer method, of class DataBase_Connector.
+     * Test of shutdownDBServer method, of class DataBase_Connector.
      */
     @Test
     public void testShutdownDataBaseServer() {
         System.out.println("shutdownDataBaseServer");
         DataBase_Connector instance = new DataBase_Connector();
-        instance.shutdownDataBaseServer();
+        instance.shutdownDBServer();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of hostAvailabilityCheck method, of class DataBase_Connector.
+     * Test of isServerRunning method, of class DataBase_Connector.
      */
     @Test
     public void testHostAvailabilityCheck() {
         System.out.println("hostAvailabilityCheck");
         DataBase_Connector instance = new DataBase_Connector();
         boolean expResult = false;
-        boolean result = instance.hostAvailabilityCheck();
+        boolean result = instance.isServerRunning();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -172,14 +172,14 @@ public class DataBase_ConnectorTest {
     }
 
     /**
-     * Test of getSensors method, of class DataBase_Connector.
+     * Test of getSensorFromDB method, of class DataBase_Connector.
      */
     @Test
     public void testGetSensors() {
         System.out.println("getSensors");
         DataBase_Connector instance = new DataBase_Connector();
         Object[] expResult = null;
-        Object[] result = instance.getSensors().toArray();
+        Object[] result = instance.getSensorFromDB().toArray();
         assertArrayEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
