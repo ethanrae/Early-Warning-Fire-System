@@ -287,7 +287,7 @@ public class View extends javax.swing.JFrame {
     public void setGrid_Panel(JPanel grid_Panel) {
         this.grid_Panel = grid_Panel;
     }
-    
+
     public double getTotal_lum_avg() {
         return total_lum_avg;
     }

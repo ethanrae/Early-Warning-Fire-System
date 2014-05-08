@@ -48,7 +48,6 @@ public class Main {
             final int seconds = 30;
             data_stream_timer.scheduleAtFixedRate(task, 3000, seconds * 1000);
 
-            
             //Start Thread to run GUI created with Netbeans GUI Builder
             java.awt.EventQueue.invokeLater(new Runnable() {
                 @Override

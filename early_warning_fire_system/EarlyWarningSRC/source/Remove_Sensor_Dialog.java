@@ -98,58 +98,51 @@ public class Remove_Sensor_Dialog extends javax.swing.JDialog {
 
     private void ok_Remove_Sensor_ButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ok_Remove_Sensor_ButActionPerformed
 
-        try
-        {
-        //regex pattern
-        String pattern = "(((\\d+)|(\\d+-{1}\\d+))($|,{1}))+";
+        try {
+            //regex pattern
+            String pattern = "(((\\d+)|(\\d+-{1}\\d+))($|,{1}))+";
 
-        //Removes all whitespace from input  
-        String input = this.remove_Sensor_Id_Text.getText().replace(" ", "");
-        if (!input.equals("")) {
-            
-            //Removes trailing commas input
-            if (input.charAt(input.length() - 1) == ',') {
-                input = input.substring(0, input.length() - 1);
-            }
+            //Removes all whitespace from input  
+            String input = this.remove_Sensor_Id_Text.getText().replace(" ", "");
+            if (!input.equals("")) {
 
-            //Input validation
-            if (input.matches(pattern)) {
+                //Removes trailing commas input
+                if (input.charAt(input.length() - 1) == ',') {
+                    input = input.substring(0, input.length() - 1);
+                }
 
-                //Parse input
-                String delims = "[,]";
-                String[] parsedInput = input.split(delims);
+                //Input validation
+                if (input.matches(pattern)) {
 
-                for (String string : parsedInput) {
-                    Table_Model table_model = main_view.getTable_model();
-                    if(string.matches("\\d+"))//single digit
-                    {
-                        int rowId = Integer.parseInt(string);
-                        table_model.removeRow(rowId);
-                    }
-                    else if(string.matches("\\d+-{1}\\d+"))//Range
-                    {
-                        String[] range = string.split("[-]");
-                        int startId = Integer.parseInt(range[0]);
-                        int finishId = Integer.parseInt(range[1]);
-                        if(startId < finishId && startId > 0 && finishId <= NUM_OF_SENSORS)
+                    //Parse input
+                    String delims = "[,]";
+                    String[] parsedInput = input.split(delims);
+
+                    for (String string : parsedInput) {
+                        Table_Model table_model = main_view.getTable_model();
+                        if (string.matches("\\d+"))//single digit
                         {
-                            for(int i = startId; i <= finishId; i++)
-                            {
-                                table_model.removeRow(i);
+                            int rowId = Integer.parseInt(string);
+                            table_model.removeRow(rowId);
+                        } else if (string.matches("\\d+-{1}\\d+"))//Range
+                        {
+                            String[] range = string.split("[-]");
+                            int startId = Integer.parseInt(range[0]);
+                            int finishId = Integer.parseInt(range[1]);
+                            if (startId < finishId && startId > 0 && finishId <= NUM_OF_SENSORS) {
+                                for (int i = startId; i <= finishId; i++) {
+                                    table_model.removeRow(i);
+                                }
                             }
                         }
                     }
                 }
             }
-        }
-        }catch(Exception e){}
-        finally
-        {
+        } catch (Exception e) {
+        } finally {
             //Close dialog
             this.dispose();
         }
-        
-        
 
     }//GEN-LAST:event_ok_Remove_Sensor_ButActionPerformed
 

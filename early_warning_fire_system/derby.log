@@ -1,4 +1,4 @@
-Wed May 07 17:31:44 PDT 2014 : Could not listen on port 1527 on host 127.0.0.1:
+Wed May 07 17:37:34 PDT 2014 : Could not listen on port 1527 on host 127.0.0.1:
  java.net.BindException: Address already in use: JVM_Bind
 An exception was thrown during network server startup. DRDA_ListenPort.S:Could not listen on port 1527 on host 127.0.0.1:
  java.net.BindException: Address already in use: JVM_Bind
@@ -15,15 +15,15 @@ Caused by: java.lang.Exception: DRDA_ListenPort.S:Could not listen on port 1527 
 	at org.apache.derby.impl.drda.NetworkServerControlImpl.consolePropertyMessage(Unknown Source)
 	at org.apache.derby.impl.drda.NetworkServerControlImpl.blockingStart(Unknown Source)
 	... 6 more
-Wed May 07 17:31:44 PDT 2014 : Apache Derby Network Server - 10.9.1.0 - (1344872) started and ready to accept connections on port 1527
+Wed May 07 17:37:34 PDT 2014 : Apache Derby Network Server - 10.9.1.0 - (1344872) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
-Wed May 07 17:31:45 PDT 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-0145-d93e-36d3-0000032648e8 
-on database directory C:\Users\E\Dropbox\comp350\Re_Team2\early_warning_fire_system\SensorDB  with class loader sun.misc.Launcher$AppClassLoader@31313e0e 
+Wed May 07 17:37:35 PDT 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-0145-d943-8f46-0000032653b8 
+on database directory C:\Users\E\Dropbox\comp350\Re_Team2\early_warning_fire_system\SensorDB  with class loader sun.misc.Launcher$AppClassLoader@17e1225d 
 Loaded from file:/C:/Users/E/Dropbox/comp350/Re_Team2/early_warning_fire_system/lib/derby.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.7.0_17-b02
 user.dir=C:\Users\E\Dropbox\comp350\Re_Team2\early_warning_fire_system
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
-Wed May 07 17:31:54 PDT 2014 : Apache Derby Network Server - 10.9.1.0 - (1344872) shutdown
+Wed May 07 17:38:25 PDT 2014 : Apache Derby Network Server - 10.9.1.0 - (1344872) shutdown

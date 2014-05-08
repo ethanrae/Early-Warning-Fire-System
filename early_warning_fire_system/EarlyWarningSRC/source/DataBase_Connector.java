@@ -172,7 +172,7 @@ public final class DataBase_Connector {
                 System.out.println("Something Happend");
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+
         } finally {
             closeConnection();
         }
@@ -247,19 +247,16 @@ public final class DataBase_Connector {
                 hum = rs.getDouble(4);
                 light = rs.getDouble(5);
                 voltage = rs.getDouble(6);
-                
+
                 //Fault Tolerance
-                if(voltage >= Update_Sensors_TimerTask.MIN_SENSOR_VOLTAGE)
-                {
+                if (voltage >= Update_Sensors_TimerTask.MIN_SENSOR_VOLTAGE) {
                     total_temp_avg += temp;
                     total_lum_avg += light;
                     total_hum_avg += hum;
-                }
-                else
-                {
+                } else {
                     num_with_low_voltage++;
                 }
-                sensors.add(new Sensor(time,id,temp,hum,light,voltage));
+                sensors.add(new Sensor(time, id, temp, hum, light, voltage));
             }
             total_temp_avg = (total_temp_avg / Main.NUM_OF_SENSORS - num_with_low_voltage);
 

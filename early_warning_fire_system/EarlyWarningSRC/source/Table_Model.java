@@ -124,10 +124,8 @@ public class Table_Model extends AbstractTableModel {
                 for (int i = 0; i < column_names.length; i++) {
                     if (showing_all) {
                         ((Sensor) all_sensors.get(rowIndex)).setColumnSensorData(i, data[i]);
-                        db_helper.insertData(((Sensor) all_sensors.get(rowIndex)));
                     } else {
                         ((Sensor) selected_sensors.get(rowIndex)).setColumnSensorData(i, data[i]);
-                        db_helper.insertData(((Sensor) selected_sensors.get(rowIndex)));
                     }
                 }
 
@@ -143,7 +141,6 @@ public class Table_Model extends AbstractTableModel {
             }
             Update_Sensors_TimerTask.updateGridCellColors();
         } catch (Exception ex) {
-            ex.printStackTrace();
         }
         fireTableDataChanged();
     }
