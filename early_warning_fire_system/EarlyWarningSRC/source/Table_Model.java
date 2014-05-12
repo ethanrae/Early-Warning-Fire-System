@@ -1,5 +1,6 @@
 package source;
 
+import java.awt.Color;
 import java.util.PriorityQueue;
 import java.util.Vector;
 import javax.swing.JPanel;
@@ -69,6 +70,7 @@ public class Table_Model extends AbstractTableModel {
                     if (((Sensor) all_sensors.get(i)).getId() == rowId) {
                         Grid_Cell cell = (Grid_Cell) grid_panel.getComponent(((Sensor) all_sensors.get(i)).getId() - 1);
                         all_sensors.remove(i);
+                        cell.setBackground(Color.BLACK);
                         cell.setNotSelected();
                         break;
                     }
@@ -82,6 +84,7 @@ public class Table_Model extends AbstractTableModel {
                     if (((Sensor) selected_sensors.get(i)).getId() == rowId) {
                         Grid_Cell cell = (Grid_Cell) grid_panel.getComponent(((Sensor) selected_sensors.get(i)).getId() - 1);
                         selected_sensors.remove(i);
+                        cell.setBackground(Color.BLACK);
                         cell.setNotSelected();
                         break;
                     }

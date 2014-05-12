@@ -171,7 +171,7 @@ public class Edit_Sensor_Dialog extends javax.swing.JDialog {
         try {
             Table_Model table_model = main_view.getTable_model();
             JTable sensor_table = main_view.getSensor_Table();
-            double time = (double) table_model.getValueAt(1, 0);
+            double time = (double) table_model.getValueAt(0, 0);
             int id = Integer.parseInt(id_Text.getText());
             double temp = Double.parseDouble(temp_Text.getText());
             double hum = Double.parseDouble(hum_Text.getText());

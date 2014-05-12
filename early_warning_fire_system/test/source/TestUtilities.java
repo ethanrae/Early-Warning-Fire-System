@@ -22,7 +22,7 @@ public class TestUtilities {
         try {
             Thread.sleep(5000);
         } catch (InterruptedException ex) {
-            Logger.getLogger(Excel_ExporterTest.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
     }
 }

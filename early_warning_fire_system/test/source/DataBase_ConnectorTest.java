@@ -12,6 +12,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static source.Main.NUM_OF_SENSORS;
 import static source.Main.db_helper;
 
 /**
@@ -57,39 +58,12 @@ public class DataBase_ConnectorTest {
     }
 
     /**
-     * Test of deleteTable method, of class DataBase_Connector.
-     */
-    @Test
-    public void testDeleteTable() {
-        System.out.println("deleteTable");
-        DataBase_Connector instance = new DataBase_Connector();
-        instance.deleteTable();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of createTable method, of class DataBase_Connector.
-     */
-    @Test
-    public void testCreateTable() {
-        System.out.println("createTable");
-        DataBase_Connector instance = new DataBase_Connector();
-        instance.createTable();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of printDebugDB method, of class DataBase_Connector.
      */
     @Test
     public void testViewData() {
         System.out.println("viewData");
-        DataBase_Connector instance = new DataBase_Connector();
         instance.printDebugDB();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -98,12 +72,9 @@ public class DataBase_ConnectorTest {
     @Test
     public void testUpdateDatabase() {
         System.out.println("updateDatabase");
-        String table_name = "";
-        String file_name = "";
-        DataBase_Connector instance = new DataBase_Connector();
+        String table_name = "SENSORS";
+        String file_name = "time0.0_Sensors.txt";
         instance.updateDatabase(table_name, file_name);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -112,35 +83,8 @@ public class DataBase_ConnectorTest {
     @Test
     public void testInsertData() {
         System.out.println("insertData");
-        Sensor S = null;
-        DataBase_Connector instance = new DataBase_Connector();
+        Sensor S = new Sensor(1025.0,1025,1025.0,1025.0,1025.0,1025.0);
         instance.insertData(S);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of startDBServer method, of class DataBase_Connector.
-     */
-    @Test
-    public void testStartDataBaseServer() {
-        System.out.println("startDataBaseServer");
-        DataBase_Connector instance = new DataBase_Connector();
-        instance.startDBServer();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of shutdownDBServer method, of class DataBase_Connector.
-     */
-    @Test
-    public void testShutdownDataBaseServer() {
-        System.out.println("shutdownDataBaseServer");
-        DataBase_Connector instance = new DataBase_Connector();
-        instance.shutdownDBServer();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -149,12 +93,9 @@ public class DataBase_ConnectorTest {
     @Test
     public void testHostAvailabilityCheck() {
         System.out.println("hostAvailabilityCheck");
-        DataBase_Connector instance = new DataBase_Connector();
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.isServerRunning();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -163,26 +104,9 @@ public class DataBase_ConnectorTest {
     @Test
     public void testToString() {
         System.out.println("toString");
-        DataBase_Connector instance = new DataBase_Connector();
-        String expResult = "";
+        String expResult = "Data Base Connector";
         String result = instance.toString();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getSensorFromDB method, of class DataBase_Connector.
-     */
-    @Test
-    public void testGetSensors() {
-        System.out.println("getSensors");
-        DataBase_Connector instance = new DataBase_Connector();
-        Object[] expResult = null;
-        Object[] result = instance.getSensorFromDB().toArray();
-        assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

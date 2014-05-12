@@ -82,7 +82,7 @@ public class Update_Sensors_TimerTask extends TimerTask {
                         sensor_hum_at_index = (double) table_model.getValueAtFromAllSensors((x * 32) + y, 4);
                         sensor_volt_at_index = (double) table_model.getValueAtFromAllSensors((x * 32) + y, 5);
                         if (sensor_volt_at_index < MIN_SENSOR_VOLTAGE) {
-                            cell.setBackground(Color.ORANGE);
+                            cell.setBackground(new Color(205,132,6));
                         } else if (sensor_temp_at_index <= total_temp_avg && sensor_lum_at_index <= avg_lum_plus_ten_perc && sensor_hum_at_index <= avg_hum_plus_ten_perc) {
                             cell.setBackground(Color.GREEN);
                         } else if (sensor_temp_at_index < MAX_TEMP && sensor_lum_at_index <= avg_lum_plus_ten_perc && sensor_hum_at_index <= avg_hum_plus_ten_perc) {

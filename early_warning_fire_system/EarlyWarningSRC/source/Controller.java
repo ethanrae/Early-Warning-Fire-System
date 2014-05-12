@@ -206,6 +206,7 @@ public class Controller implements ActionListener, MouseListener {
             Table_Model.showing_all = true;
             clearAllSelected();
             table_model.fireTableDataChanged();
+            Update_Sensors_TimerTask.updateGridCellColors();
             avg_temp_panel.revalidate();
             avg_temp_panel.repaint();
         } else if (e.getActionCommand().equalsIgnoreCase("Export Data to Excel Spreadsheet")) {

@@ -55,7 +55,7 @@ public class Table_ModelTest {
     @Test
     public void testGetRowCount() {
         System.out.println("getRowCount");
-        int expResult = width;
+        int expResult = 36;
         int result = instance.getRowCount();
         assertEquals(expResult, result);
     }
@@ -116,11 +116,11 @@ public class Table_ModelTest {
     @Test
     public void testSetValueAt() {
         System.out.println("setValueAt");
-        Object value = new Sensor(1, 1, 1, 1, 1, 1);
+        Object value = new Double(1.9);
         int rowIndex = 0;
         int columnIndex = 0;
         instance.setValueAt(value, rowIndex, columnIndex);
-        Object expResult = value;
+        Object expResult = new Double(1.9);
         Object result = instance.getValueAt(rowIndex, columnIndex);
         assertEquals(expResult, result);
     }

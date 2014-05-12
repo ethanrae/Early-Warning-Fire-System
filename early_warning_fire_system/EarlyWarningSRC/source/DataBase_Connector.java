@@ -268,7 +268,7 @@ public final class DataBase_Connector {
                 } else if (total_temp_avg <= 30) {
                     avg_Temp_Img.setBackground(Color.yellow);
                 } else if (total_temp_avg <= 50) {
-                    avg_Temp_Img.setBackground(Color.orange);
+                    avg_Temp_Img.setBackground(new Color(205,132,6));
                 } else {
                     avg_Temp_Img.setBackground(Color.red);
                 }
